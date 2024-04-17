@@ -4,9 +4,11 @@
 
     // Import Components
     import Sidebar from "../components/Sidebar.svelte";
+    import Searchbar from '../components/Searchbar.svelte';
 </script>
 
 <div class="flex-container">
+    <Searchbar/>
     <Sidebar/>
 </div>
 
