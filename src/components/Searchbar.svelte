@@ -4,13 +4,12 @@
 
 <style lang="scss">
     .searchbar{
-        position: absolute;
         background-color: $black;
-        width: 80%;
+        width: auto;
         height: 4rem;
-        margin-left: 23rem;
-        margin-top: 1rem;
+        margin: 1rem;
         border-radius: 12px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     }
     input{
         background-color: $black;
