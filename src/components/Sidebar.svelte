@@ -7,7 +7,7 @@
     .sidebar-container{
         height: 100vh;
         width: 20rem;
-        background-color: $black;
+        background-color: $gray;
         margin: 1rem;
         border-radius: 12px;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;

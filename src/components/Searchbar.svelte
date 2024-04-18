@@ -4,7 +4,6 @@
 
 <style lang="scss">
     .searchbar{
-        background-color: $black;
         width: auto;
         height: 4rem;
         margin: 1rem;
@@ -12,7 +11,7 @@
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     }
     input{
-        background-color: $black;
+        background-color: $gray;
         border: none;
         border-radius: 12px;
         width: 100%;
