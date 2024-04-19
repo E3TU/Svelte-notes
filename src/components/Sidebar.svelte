@@ -1,6 +1,5 @@
 <div class="sidebar-container">
     <h2 class="navbar-heading">Svelte Notes</h2>
-    <button id="newnote-btn">New Note</button>
 </div>
 
 <style lang="scss">
@@ -16,14 +15,5 @@
         margin: 1rem;
         color: $white;
         letter-spacing: 0.05rem;
-    }
-    #newnote-btn{
-        margin: 1rem;
-        background-color: $primary-color;
-        border: none;
-        border-radius: 8px;
-        color: $white;
-        padding: 1rem 7rem;
-        font-size: 0.9rem;
     }
 </style>
