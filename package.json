@@ -17,6 +17,7 @@
   },
   "type": "module",
   "dependencies": {
-    "@fontsource-variable/rubik": "^5.0.21"
+    "@fontsource-variable/rubik": "^5.0.21",
+    "@iconify/svelte": "^3.1.6"
   }
 }
