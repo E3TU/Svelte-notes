@@ -28,11 +28,15 @@
         font-size: 1.25rem;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     }
+    input:focus{
+        outline: 2px solid $primary-color;
+    }
     ::placeholder{
         color: $white;
         opacity: 0.8;
     }
     #search-btn{
+        font-size: 1rem;
         margin-left: 2rem;
         padding: 1rem 1.5rem 1rem 1.5rem;
         border-radius: 12px;
@@ -44,5 +48,6 @@
     #search-btn:hover{
         opacity: 0.8;
         transition: 0.5s;
+        cursor: pointer;
     }
 </style>
