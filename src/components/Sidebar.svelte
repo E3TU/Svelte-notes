@@ -7,9 +7,13 @@
     <Icon class="svelte-logo" icon="devicon:svelte" />velte Notes
   </h2>
   <div class="categories-container">
-    <div class="wrapper">
+    <div class="top-wrapper">
       <h4 class="categories-heading">Categories</h4>
       <a id="add-categorybtn"><Icon icon="tabler:plus" class="plus-icon" /></a>
+    </div>
+    <div class="buttons-wrapper">
+      <a href="https://example.org" class="settings-btn"><Icon class="bottom-icon" icon="material-symbols:settings" />Settings</a>
+      <a href="https://example.org" class="source-btn"><Icon class="bottom-icon" icon="mdi:github" />Source</a>
     </div>
   </div>
 </div>
@@ -39,12 +43,13 @@
   }
   .categories-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex: 1;
     padding-top: 2rem;
   }
-  .wrapper{
+  .top-wrapper{
     display: flex;
+    flex: 1;
     width: 100%;
     height: 2rem;
   }
@@ -57,12 +62,47 @@
     color: $primary-color;
     font-size: 1.5rem;
     vertical-align: middle;
+    cursor: pointer;
+    transition: 1s;
+  }
+  :global(.plus-icon):hover {
+    rotate: 90deg;
   }
   #add-categorybtn {
     background-color: transparent;
     outline: none;
     border: none;
     width: min-content;
-    margin-left: 8rem;
+    margin-left: 9.5rem;
+  }
+  .buttons-wrapper{
+    display: flex;
+    flex-direction: row;
+    padding-left: 1rem;
+    padding-bottom: 1rem;
+    gap: 0.5rem;
+  }
+  .settings-btn{
+    border: none;
+    color: $white;
+    text-decoration: none;
+    transition: 0.5s;
+  }
+  .settings-btn:hover{
+    color: $primary-color;
+  }
+  .source-btn{
+    border: none;
+    color: $white;
+    text-decoration: none;
+    transition: 0.5s;
+  }
+  .source-btn:hover{
+    color: $primary-color;
+  }
+  :global(.bottom-icon) {
+    font-size: 1.25rem;
+    margin-right: 0.5rem;
+    vertical-align: top;
   }
 </style>
