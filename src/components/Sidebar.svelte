@@ -9,11 +9,16 @@
   <div class="categories-container">
     <div class="top-wrapper">
       <h4 class="categories-heading">Categories</h4>
-      <a id="add-categorybtn"><Icon icon="tabler:plus" class="plus-icon" /></a>
+      <a title="Add Category" id="add-categorybtn"><Icon icon="tabler:plus" class="plus-icon" /></a>
     </div>
-    <div class="buttons-wrapper">
-      <a href="https://example.org" class="settings-btn"><Icon class="bottom-icon" icon="material-symbols:settings" />Settings</a>
-      <a href="https://example.org" class="source-btn"><Icon class="bottom-icon" icon="mdi:github" />Source</a>
+    <div class="profile-wrapper">
+      <!-- <Icon class="profile-icon" icon="gg:profile" /> -->
+      <!-- <Icon class="profile-icon" icon="iconamoon:profile-circle-fill" /> -->
+      <Icon class="profile-icon" icon="pajamas:profile" />
+      <p title="Username" class="username">Joe Mama</p>
+      <div title="Settings" class="settings-wrapper">
+        <Icon class="settings-icon" icon="material-symbols:settings" />
+      </div>
     </div>
   </div>
 </div>
@@ -28,7 +33,6 @@
     margin: 1rem;
     border-radius: 12px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    letter-spacing: 0.05rem;
   }
   .navbar-heading {
     // margin: 1rem;
@@ -36,6 +40,7 @@
     margin-left: 1rem;
     color: $white;
     font-size: 1.5rem;
+    letter-spacing: 0.05rem;
   }
   :global(.svelte-logo) {
     vertical-align: bottom;
@@ -57,6 +62,7 @@
     color: $white;
     // margin-top: 2rem;
     margin-left: 1rem;
+    letter-spacing: 0.05rem;
   }
   :global(.plus-icon) {
     color: $primary-color;
@@ -75,34 +81,42 @@
     width: min-content;
     margin-left: 9.5rem;
   }
-  .buttons-wrapper{
+  .profile-wrapper{
     display: flex;
-    flex-direction: row;
-    padding-left: 1rem;
-    padding-bottom: 1rem;
-    gap: 0.5rem;
-  }
-  .settings-btn{
-    border: none;
+    align-items: center;
+    // margin: 1rem;
+    background-color: $primary-color;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 10px;
+    width: max;
+    height: 4rem;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
     color: $white;
-    text-decoration: none;
-    transition: 0.5s;
   }
-  .settings-btn:hover{
-    color: $primary-color;
+  :global(.profile-icon) {
+    margin-left: 0.5rem;
+    color: $lighter-gray;
+    font-size: 2rem;
   }
-  .source-btn{
-    border: none;
+  .username{
+    margin-left: 0.5rem;
+    font-size: 1.1rem;
+  }
+  .settings-wrapper{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    align-items: flex-end;
+  }
+  :global(.settings-icon) {
     color: $white;
-    text-decoration: none;
-    transition: 0.5s;
-  }
-  .source-btn:hover{
-    color: $primary-color;
-  }
-  :global(.bottom-icon) {
+    vertical-align: bottom;
+    margin-right: 1rem;
     font-size: 1.25rem;
-    margin-right: 0.5rem;
-    vertical-align: top;
+    transition: 1s;
+  }
+  :global(.settings-icon):hover {
+    rotate: 180deg;
+    cursor: pointer;
   }
 </style>
