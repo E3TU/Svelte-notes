@@ -85,9 +85,8 @@
     display: flex;
     align-items: center;
     // margin: 1rem;
-    background-color: $primary-color;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 10px;
-    width: max;
+    // background-color: $primary-color;
+    box-shadow: rgba(0, 0, 0, 0.10) 0px 2px 4px 0px, rgba(0, 0, 0, 0.80) 0px 2px 16px 0px;
     height: 4rem;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
@@ -95,7 +94,7 @@
   }
   :global(.profile-icon) {
     margin-left: 0.5rem;
-    color: $lighter-gray;
+    color: $white;
     font-size: 2rem;
   }
   .username{
