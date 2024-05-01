@@ -40,14 +40,15 @@
         margin-left: 2rem;
         padding: 1rem 1.5rem 1rem 1.5rem;
         border-radius: 12px;
-        border: none;
         background-color: $primary-color;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        border: 2px solid $primary-color;
         transition: 0.5s;
     }
     #search-btn:hover{
-        opacity: 0.8;
-        transition: 0.5s;
         cursor: pointer;
+        background-color: transparent;
+        border: 2px solid $primary-color;
+        transition: 0.5s;
     }
 </style>
