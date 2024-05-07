@@ -2,8 +2,6 @@
   import Icon from "@iconify/svelte";
 
   let isExpanded = false;
-  let arrowDownIcon = "fe:arrow-down";
-  let arrowUpIcon = "iconamoon:arrow-down-2";
 
   function clickHandler() {
     isExpanded = !isExpanded;
@@ -17,7 +15,7 @@
     >
     <nav class="dropdown-menu">
       <button on:click={clickHandler} class="dropdown-btn"
-        >Sort By<Icon class="dropdown-icon" icon={arrowDownIcon} /></button
+        >Sort By<Icon class="dropdown-icon" icon="fe:arrow-down" /></button
       >
       {#if isExpanded}
         <ul>
