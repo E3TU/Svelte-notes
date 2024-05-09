@@ -103,6 +103,8 @@
     li{
       padding: 0.5rem;
       font-size: 1rem;
+      transition: 0.5s;
+      cursor: pointer;
     }
     li:hover{
       background-color: #3e3e3e;
