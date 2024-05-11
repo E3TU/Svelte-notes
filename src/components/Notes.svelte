@@ -50,11 +50,7 @@
       <p class="content">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-        mollit anim id est laborum.
+
       </p>
     </div>
   </div>
@@ -160,14 +156,19 @@
     width: 15rem;
     border-radius: 8px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    overflow-y: scroll;
-    scrollbar-width: thin;
-    scrollbar-gutter: stable;
+    overflow-y: auto;
   }
-  .note::-webkit-scrollbar-thumb {
-    background-image: linear-gradient(180deg, #d0368a 0%, #708ad4 99%);
-    box-shadow: inset 2px 2px 5px 0 rgba(#fff, 0.5);
-    border-radius: 100px;
+  .note::-webkit-scrollbar{
+    border-radius: 10px;
+    scrollbar-width: thin;
+  }
+  .note::-webkit-scrollbar-thumb{
+    background-color: $lighter-gray;
+    border-radius: 8px;
+  }
+  .note::-webkit-scrollbar-track{
+    background-color: #151515;
+    border-radius: 8px;
   }
   .title {
     padding: 0.5rem 1rem;
