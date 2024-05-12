@@ -52,6 +52,10 @@
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
 
       </p>
+      <div class="control-buttons">
+        <Icon class="edit-btn" icon="material-symbols:edit-outline" />
+        <Icon class="delete-btn" icon="ic:outline-delete" />
+      </div>
     </div>
   </div>
 </div>
@@ -145,9 +149,9 @@
     width: 100%;
     height: auto;
     display: flex;
-    padding: 2rem 1rem;
   }
   .note {
+    margin: 2rem 1rem;
     display: flex;
     flex-direction: column;
     background-color: $bg-color;
@@ -175,5 +179,30 @@
   }
   .content {
     padding: 0.25rem 1.1rem;
+  }
+  .control-buttons{
+    display: flex;
+    flex: 1;
+    width: 100%;
+    align-items: flex-end;
+    padding-left: 1rem;
+    padding-bottom: 1rem;
+  }
+  :global(.edit-btn) {
+    font-size: 1.5rem;
+    color: $primary-color;
+    transition: 0.5s;
+  }
+  :global(.edit-btn):hover{
+    opacity: 0.5;
+  }
+  :global(.delete-btn){
+    font-size: 1.5rem;
+    color: $red;
+    margin-left: 0.5rem;
+    transition: 0.5s;
+  }
+  :global(.delete-btn):hover{
+    opacity: 0.5;
   }
 </style>
