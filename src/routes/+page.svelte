@@ -3,19 +3,21 @@
   import "@fontsource-variable/rubik";
 
   // Import Components
+  import Login from "../components/Login.svelte";
   import Sidebar from "../components/Sidebar.svelte";
   import Searchbar from "../components/Searchbar.svelte";
   import Notes from "../components/Notes.svelte";
 </script>
 
 <div class="flex-container">
-    <div class="flex-items-left">
+    <Login />
+    <!-- <div class="flex-items-left">
         <Sidebar />
     </div>
   <div class="flex-items-right">
     <Searchbar />
     <Notes />
-  </div>
+  </div> -->
 </div>
 
 <style lang="scss">
