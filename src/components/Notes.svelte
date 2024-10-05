@@ -9,31 +9,35 @@
 
   // Other Logic
   let notes = [];
-  let title = "";
-  let content = "";
-  let dateCreated = "";
+  let noteId = 1;
 
   function addNote() {
     const note = {
-      title: title,
-      content: content,
-      Created: dateCreated,
+      id: noteId++,
+      title: "Test",
+      content: "test",
+      Created: Date.now(),
       // Modified: ,
     };
 
     notes = [...notes, note];
-    newNote = "";
+    console.log(notes);
+  }
+
+  function deleteNote(id) {
+    notes = notes.filter(note => note.id !== id);
+    console.log(notes);
   }
 </script>
 
 <div class="notes-container">
   <div class="action-bar">
-    <button class="addnote-btn"
-      ><Icon icon="ph:plus-bold" class="plussign-icon" />New Note</button
+    <button class="addnote-btn" on:click={addNote}
+    ><Icon icon="ph:plus-bold" class="plussign-icon"/>New Note</button
     >
     <nav class="dropdown-menu">
       <button on:click={clickHandler} class="dropdown-btn"
-        >Sort By<Icon class="dropdown-icon" icon="fe:arrow-down" /></button
+      >Sort By<Icon class="dropdown-icon" icon="fe:arrow-down" /></button
       >
       {#if isExpanded}
         <ul>
@@ -45,18 +49,20 @@
   </div>
   <div class="notes-wrapper">
     <!--Notes go here grrrrr pau pau-->
-    <div class="note">
-      <h1 class="title">Note</h1>
-      <p class="content">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-
-      </p>
-      <div class="control-buttons">
-        <Icon class="edit-btn" icon="material-symbols:edit-outline" />
-        <Icon class="delete-btn" icon="ic:outline-delete" />
+    {#each notes as note(note.id)}
+      <div class="note">
+        <h1 class="title">{note.title}</h1>
+        <p class="content">{note.content}</p>
+        <div class="control-buttons">
+          <button id="edit-note">
+            <Icon class="edit-btn" icon="material-symbols:edit-outline" />
+          </button>
+          <button id="delete-note" on:click={(e) => { e.stopPropagation(); deleteNote(note.id); }}>
+            <Icon class="delete-btn" icon="ic:outline-delete" />
+          </button>
+        </div>
       </div>
-    </div>
+    {/each}
   </div>
 </div>
 
@@ -187,6 +193,14 @@
     align-items: flex-end;
     padding-left: 1rem;
     padding-bottom: 1rem;
+  }
+  #edit-note {
+    background: transparent;
+    border: none;
+  }
+  #delete-note{
+    background: transparent;
+    border: none;
   }
   :global(.edit-btn) {
     font-size: 1.5rem;
