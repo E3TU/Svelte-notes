@@ -1,6 +1,7 @@
 <script>
   // Import Font
   import "@fontsource-variable/rubik";
+  import { fade } from 'svelte/transition';
 
   // Import Components
   import Sidebar from "../components/Sidebar.svelte";
@@ -34,10 +35,9 @@
 
 <div class="flex-container">
     {#if isOpen}
-        <div class="createnote-container">
+        <div class="createnote-container" transition:fade={{ delay: 250, duration: 300}}>
             <div class="createnote">
-                <h1>TEst</h1>
-                <button on:click={createNoteMenu}>Tes</button>
+                <button on:click={createNoteMenu}>Close</button>
             </div>
         </div>
     {/if}
@@ -63,15 +63,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: opacity 0.3s ease; /* Smooth transition for opacity */
     position: fixed;
     width: 100vw;
     height: 100vh;
     z-index: 1000;
+    backdrop-filter: blur(2px); /* Blurs the background */
   }
   .createnote{
-    width: 20rem;
-    height: 20rem;
-    background-color: $white;
+    margin-top: 2rem;
+    width: 35rem;
+    height: 45rem;
+    background-color: $bg-color;
+    border-radius: 12px;
+    box-shadow: rgba(0, 0, 0, 0.10) 0px 2px 4px 0px, rgba(0, 0, 0, 0.80) 0px 2px 16px 0px;
+    color: $white;
   }
   .flex-items-left{
     display: flex;
