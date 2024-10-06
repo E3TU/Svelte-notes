@@ -2,7 +2,6 @@
   import Icon from "@iconify/svelte";
   // Dropdown Menu
   let isExpanded = false;
-
   function clickHandler() {
     isExpanded = !isExpanded;
   }
@@ -10,14 +9,13 @@
   // Other Logic
   let notes = [];
   let noteId = 1;
-
+  
   function addNote() {
     const note = {
       id: noteId++,
       title: "Test",
       content: "test",
       Created: Date.now(),
-      // Modified: ,
     };
 
     notes = [...notes, note];
@@ -28,17 +26,14 @@
     notes = notes.filter(note => note.id !== id);
     console.log(notes);
   }
+  export let createNoteMenu;
 </script>
 
 <div class="notes-container">
   <div class="action-bar">
-    <button class="addnote-btn" on:click={addNote}
-    ><Icon icon="ph:plus-bold" class="plussign-icon"/>New Note</button
-    >
+    <button class="createnote-btn" on:click={createNoteMenu}><Icon icon="ph:plus-bold" class="plussign-icon"/>New Note</button>
     <nav class="dropdown-menu">
-      <button on:click={clickHandler} class="dropdown-btn"
-      >Sort By<Icon class="dropdown-icon" icon="fe:arrow-down" /></button
-      >
+      <button on:click={clickHandler} class="dropdown-btn">Sort By<Icon class="dropdown-icon" icon="fe:arrow-down" /></button>
       {#if isExpanded}
         <ul>
           <li>Name</li>
@@ -47,6 +42,7 @@
       {/if}
     </nav>
   </div>
+  
   <div class="notes-wrapper">
     <!--Notes go here grrrrr pau pau-->
     {#each notes as note(note.id)}
@@ -85,7 +81,7 @@
     padding: 1rem;
     gap: 1rem;
   }
-  .addnote-btn {
+  .createnote-btn {
     width: 8rem;
     height: 3rem;
     background-color: $green;
@@ -96,7 +92,7 @@
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     transition: 0.5s;
   }
-  .addnote-btn:hover {
+  .createnote-btn:hover {
     cursor: pointer;
     background-color: transparent;
     transition: 0.5s;
@@ -198,9 +194,15 @@
     background: transparent;
     border: none;
   }
+  #edit-note:hover{
+    cursor: pointer;
+  }
   #delete-note{
     background: transparent;
     border: none;
+  }
+  #delete-note{
+    cursor: pointer;
   }
   :global(.edit-btn) {
     font-size: 1.5rem;
