@@ -2,7 +2,8 @@
   import Icon from "@iconify/svelte";
   // Dropdown Menu
   let isExpanded = false;
-  function clickHandler() {
+  function clickHandler(e) {
+    e.stopPropagation();
     isExpanded = !isExpanded;
   }
 
@@ -33,7 +34,7 @@
   <div class="action-bar">
     <button class="createnote-btn" on:click={createNoteMenu}><Icon icon="ph:plus-bold" class="plussign-icon"/>New Note</button>
     <nav class="dropdown-menu">
-      <button on:click={clickHandler} class="dropdown-btn">Sort By<Icon class="dropdown-icon" icon="fe:arrow-down" /></button>
+      <button on:click|preventDefault={clickHandler} class="dropdown-btn">Sort By<Icon class="dropdown-icon" icon="fe:arrow-down" /></button>
       {#if isExpanded}
         <ul>
           <li>Name</li>
