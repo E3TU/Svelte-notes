@@ -149,7 +149,17 @@
     font-size: 1rem;
     border-radius: 8px;
     outline: none;
-    border: none;
+    border: 2px solid $white;
+    background-color: transparent;
+    color: $white;
+    transition: 0.5s;
+  }
+  #note-title:focus{
+    border: 2px solid $primary-color;
+  }
+  #note-title::placeholder{
+    color: $white;
+    opacity: 0.7;
   }
   #note-content{
     resize: none;
@@ -157,8 +167,31 @@
     padding: 1rem;
     font-size: 1rem;
     border-radius: 8px;
-    border: none;
+    border: 2px solid $white;
+    background-color: transparent;
     outline: none;
+    color: $white;
+    transition: 0.5s;
+    font-family: 'Rubik Variable', sans-serif;
+  }
+  #note-content:focus{
+    border: 2px solid $primary-color;
+  }
+  #note-content::-webkit-scrollbar{
+    width: 10px;
+  }
+  #note-content::-webkit-scrollbar-track{
+    background-color: $gray;
+    border-radius: 8px;
+  }
+  #note-content::-webkit-scrollbar-thumb{
+    background-color: $primary-color;
+    border-radius: 10px;
+    height: 30px;
+  }
+  #note-content::placeholder{
+    color: $white;
+    opacity: 0.7;
   }
   #save-note-btn{
     position: relative;
