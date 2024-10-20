@@ -19,7 +19,7 @@
     }
     input{
         background-color: $gray;
-        border: none;
+        border: 2px solid transparent;
         border-radius: 12px;
         width: 100%;
         height: 100%;
@@ -27,9 +27,11 @@
         padding: 1rem;
         font-size: 1.25rem;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        outline: none;
     }
     input:focus{
-        outline: 2px solid $primary-color;
+        border: 2px solid $primary-color;
+        transition: border-top-color 0.1s linear, border-right-color 0.1s linear 0.07s, border-bottom-color 0.1s linear 0.14s, border-left-color 0.1s linear 0.20s;
     }
     ::placeholder{
         color: $white;
