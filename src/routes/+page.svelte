@@ -35,16 +35,16 @@
 
 <div class="flex-container">
     <Login />
-  <!--  {#if $isMenuOpen}-->
-  <!--      <Createnote />-->
-  <!--  {/if}-->
-  <!--  <div class="flex-items-left">-->
-  <!--      <Sidebar />-->
-  <!--  </div>-->
-  <!--<div class="flex-items-right">-->
-  <!--  <Searchbar />-->
-  <!--  <Notes createNoteMenu={createNoteMenu} />-->
-  <!--</div>-->
+<!--    {#if $isMenuOpen}-->
+<!--        <Createnote />-->
+<!--    {/if}-->
+<!--    <div class="flex-items-left">-->
+<!--        <Sidebar />-->
+<!--    </div>-->
+<!--  <div class="flex-items-right">-->
+<!--    <Searchbar />-->
+<!--    <Notes createNoteMenu={createNoteMenu} />-->
+<!--  </div>-->
 </div>
 
 <style lang="scss">
