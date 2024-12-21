@@ -10,13 +10,16 @@
     </div>
     <form class="login-form">
         <h1 class="title">Login</h1>
-        <label for="email">Email</label>
+        <label class="email-label" for="email">Email</label>
         <input class="login-input" name="email" type="text" placeholder="Email" />
-        <label for="password">Password</label>
+        <label class="password-label" for="password">Password</label>
         <input class="login-input" name="password" type="password" placeholder="Password" />
-        <label class="remember-me">Remember me
-            <input type="checkbox">
-        </label>
+        <div class="checkbox-wrapper">
+            <label class="remember-me">Remember me
+                <input type="checkbox">
+            </label>
+            <a class="forgot-password">Forgot Your Password?</a>    
+        </div>
         <button class="login-button">Login</button>
     </form>
 </div>
@@ -78,7 +81,12 @@
       font-size: 2rem;
       padding: 1rem;
     }
-    label{
+    .email-label{
+      padding-left: 1rem;
+      padding-top: 0.5rem;
+      font-size: 1.2rem;
+    }
+    .password-label{
       padding-left: 1rem;
       padding-top: 0.5rem;
       font-size: 1.2rem;
@@ -90,30 +98,50 @@
       outline: none;
       height: 3.5rem;
       font-size: 1rem;
-      background-color: $lighter-gray;
-      border: 2px solid transparent;
-      color: $white;
+      background-color: $white;
+      border: 3px solid transparent;
+      color: $black;
       transition: 0.5s;
       width: 25rem;
     }
     .login-input:focus{
-      border: 2px solid $primary-color;
+      border: 3px solid $primary-color;
       transition: 0.5s;
+    }
+    .checkbox-wrapper{
+      display: flex;
+      flex-direction: row;
     }
     .remember-me{
       font-size: 1rem;
-      display: flex;
+      padding-left: 1rem;
+      input{
+        margin-left: 0.25rem;
+      }
+    }
+    .forgot-password{
+      margin-left: 6rem;
+      text-decoration: underline;
+    }
+    .forgot-password:hover{
+      cursor: pointer;
     }
     .login-button{
       margin: 1rem;
       padding: 1rem;
       border-radius: 8px;
-      border: none;
+      border: 2px solid transparent;
       outline: none;
       background-color: $primary-color;
       color: $white;
       font-size: 1rem;
       width: 25rem;
-
+      transition: 0.5s;
+    }
+    .login-button:hover{
+      border: 2px solid $primary-color;
+      background-color: transparent;
+      cursor: pointer;
+      transition: 0.5s;
     }
 </style>
