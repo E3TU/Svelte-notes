@@ -11,26 +11,7 @@
   
   // Import Store(s)
   import {createNoteMenu, isMenuOpen} from "../stores/CreateNoteMenu.js";
-  
-  // const fetchData = async () => {
-  //     try {
-  //         const res = await fetch("http://localhost:3000/test", {
-  //             method: "GET",
-  //             headers: {
-  //                 "Content-Type": "application/json",
-  //             }
-  //         });
-  //         const data = await res.json();
-  //         console.log(data);
-  //     }
-  //     catch (error){
-  //         console.error("Error fetching data", error);
-  //     }
-  // }
-  // fetchData();
 
-
-  
 </script>
 
 <div class="flex-container">

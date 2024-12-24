@@ -14,7 +14,7 @@
         <input class="login-input" name="email" type="text" placeholder="Email" />
         <label class="password-label" for="password">Password</label>
         <input class="login-input" name="password" type="password" placeholder="Password" />
-        <div class="checkbox-wrapper">
+        <div class="bottom-wrapper">
             <label class="remember-me">Remember me
                 <input type="checkbox">
             </label>
@@ -108,7 +108,7 @@
       border: 3px solid $primary-color;
       transition: 0.5s;
     }
-    .checkbox-wrapper{
+    .bottom-wrapper{
       display: flex;
       flex-direction: row;
     }
