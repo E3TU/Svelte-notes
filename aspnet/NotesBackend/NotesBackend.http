@@ -1,6 +1,6 @@
-@NotesBackend_HostAddress = http://localhost:5289
+@NotesBackend_HostAddress = http://localhost:5170
 
-GET {{NotesBackend_HostAddress}}/hello/
+GET {{NotesBackend_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
