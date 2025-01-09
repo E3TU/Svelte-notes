@@ -1,7 +1,6 @@
 import { Client, Account } from "appwrite";
-import 'dotenv/config'
 
-const projectId = process.env.PROEJECT_ID;
+const projectId = import.meta.env.VITE_PROJECT_ID;
 
 export const client = new Client();
 

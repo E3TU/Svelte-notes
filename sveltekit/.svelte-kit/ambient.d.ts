@@ -26,7 +26,7 @@
  * ```
  */
 declare module '$env/static/private' {
-	export const PROJECT_ID: string;
+	export const VITE_PROJECT_ID: string;
 	export const SHELL: string;
 	export const npm_command: string;
 	export const SESSION_MANAGER: string;
@@ -117,6 +117,7 @@ declare module '$env/static/private' {
 	export const GIO_LAUNCHED_DESKTOP_FILE: string;
 	export const TERM_PROGRAM: string;
 	export const NODE_ENV: string;
+	export const PROJECT_ID: string;
 }
 
 /**
@@ -148,7 +149,7 @@ declare module '$env/static/public' {
  */
 declare module '$env/dynamic/private' {
 	export const env: {
-		PROJECT_ID: string;
+		VITE_PROJECT_ID: string;
 		SHELL: string;
 		npm_command: string;
 		SESSION_MANAGER: string;
@@ -239,6 +240,7 @@ declare module '$env/dynamic/private' {
 		GIO_LAUNCHED_DESKTOP_FILE: string;
 		TERM_PROGRAM: string;
 		NODE_ENV: string;
+		PROJECT_ID: string;
 		[key: `PUBLIC_${string}`]: undefined;
 		[key: `${string}`]: string | undefined;
 	}
