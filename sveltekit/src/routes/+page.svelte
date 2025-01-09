@@ -8,6 +8,7 @@
   import Notes from "../components/Notes.svelte";
   import Createnote from "../components/Createnote.svelte";
   import Login from "../components/Login.svelte";
+  import Register from "../components/Register.svelte";
   
   // Import Store(s)
   import {createNoteMenu, isMenuOpen} from "../stores/CreateNoteMenu.js";
@@ -15,17 +16,17 @@
 </script>
 
 <div class="flex-container">
-    <Login />
-<!--    {#if $isMenuOpen}-->
-<!--        <Createnote />-->
-<!--    {/if}-->
-<!--    <div class="flex-items-left">-->
-<!--        <Sidebar />-->
-<!--    </div>-->
-<!--  <div class="flex-items-right">-->
-<!--    <Searchbar />-->
-<!--    <Notes createNoteMenu={createNoteMenu} />-->
-<!--  </div>-->
+    <Register />
+   <!-- {#if $isMenuOpen}
+       <Createnote />
+   {/if}
+   <div class="flex-items-left">
+       <Sidebar />
+   </div>
+ <div class="flex-items-right">
+   <Searchbar />
+   <Notes createNoteMenu={createNoteMenu} />
+  </div> -->
 </div>
 
 <style lang="scss">
