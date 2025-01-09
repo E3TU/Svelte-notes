@@ -19,6 +19,7 @@
   "dependencies": {
     "@fontsource-variable/rubik": "^5.0.21",
     "@iconify/svelte": "^3.1.6",
-    "dotenv": "^16.4.5"
+    "appwrite": "^16.1.0",
+    "dotenv": "^16.4.7"
   }
 }
