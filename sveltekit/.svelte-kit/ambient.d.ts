@@ -117,7 +117,6 @@ declare module '$env/static/private' {
 	export const GIO_LAUNCHED_DESKTOP_FILE: string;
 	export const TERM_PROGRAM: string;
 	export const NODE_ENV: string;
-	export const PROJECT_ID: string;
 }
 
 /**
@@ -240,7 +239,6 @@ declare module '$env/dynamic/private' {
 		GIO_LAUNCHED_DESKTOP_FILE: string;
 		TERM_PROGRAM: string;
 		NODE_ENV: string;
-		PROJECT_ID: string;
 		[key: `PUBLIC_${string}`]: undefined;
 		[key: `${string}`]: string | undefined;
 	}
