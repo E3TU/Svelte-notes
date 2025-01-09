@@ -9,9 +9,7 @@
     }
 
     async function register(email, password, username) {
-        await account.create(ID.unique(), email, password);
-
-        await account.updateName(username);
+        await account.create(ID.unique(), email, password, username);
 
         login(email, password);
     }
