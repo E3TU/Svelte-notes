@@ -3,9 +3,9 @@
 
     const register = async (e) => {
       e.preventDefault();
-      const formData = new formData(e.target);
-      await user.register
-    }
+      const formData = new FormData(e.target);
+      await user.register(formData.get('email'), formData.get('password'), formData.get('username'));
+    };
 </script>
 
 
