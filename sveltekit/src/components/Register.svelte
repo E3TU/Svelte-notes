@@ -1,48 +1,13 @@
 <script>
-    import { account, ID } from '$lib/appwrite';
+    import { user } from '../stores/userStore';
 
-    let loggedInUser = null;
-
-    async function login(email, password) {
-        await account.createEmailPasswordSession(email, password);
-        loggedInUser = await account.get();
-    }
-
-    async function register(email, password, username) {
-        await account.create(ID.unique(), email, password, username);
-
-        login(email, password);
-    }
-
-    function submit(e) {
-        e.preventDefault();
-        const formData = new FormData(e.target);
-        const type = e.submitter.dataset.type;
-
-        if (type == "login") {
-            login(formData.get('email'), formData.get('password'));
-        } else if (type == "register") {
-            register(formData.get('email'), formData.get('password'), formData.get('username'));
-        }
-    }
-
-    async function logout() {
-        await account.deleteSession('current');
-        loggedInUser = null;
+    const register = async (e) => {
+      e.preventDefault();
+      const formData = new formData(e.target);
+      await user.register
     }
 </script>
 
-<!-- <p>{loggedInUser ? `Logged in as ${loggedInUser.name}` : 'Not logged in'}</p>
-
-<form on:submit={submit}>
-    <input type="email" placeholder="Email" name="email" required>
-    <input type="password" placeholder="Password" name="password" required>
-
-    <button type="submit" data-type="login">Login</button>
-    <button type="submit" data-type="register">Register</button>
-</form>
-
-<button on:click={logout}>Logout</button> -->
 
 <div class="register-flex-container">
   <div class="about-container">
@@ -60,7 +25,7 @@
       </p>
     </div>
   </div>
-  <form on:submit={submit} class="register-form">
+  <form on:submit={register} class="register-form">
     <h1 class="title">Register</h1>
     <label class="username-label" for="username">Username</label>
     <input
