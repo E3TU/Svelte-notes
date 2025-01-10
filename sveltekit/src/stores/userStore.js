@@ -1,6 +1,7 @@
 import { writable } from "svelte/store";
-import { account, ID } from "$lib/appwrite";
+import { ID } from "appwrite";
 import { goto } from "$app/navigation";
+import { account } from "$lib/appwrite";
 
 const isBrowser = typeof window !== "undefined";
 
@@ -10,27 +11,33 @@ const createUser = () => {
   async function init() {
     if (!isBrowser) return;
     try {
-      store.set(await account.get());
+        store.set(await account.get());
     } catch (e) {
-      store.set(null);
+        console.error("You are not logged in");
+        store.set(null);
     }
-  }
+}
 
   init();
 
+  // Function for registering user account
   async function register(email, password, username) {
+    if (!isBrowser) return;
     await account.create(ID.unique(), email, password, username);
-
-    login(email, password);
+    await login(email, password);
   }
 
+  // Function for logging in user
   async function login(email, password) {
+    if (!isBrowser) return;
     await account.createEmailPasswordSession(email, password);
     // loggedInUser = await account.get();
+    console.log("Logged in successfully");
     await init();
     goto("/");
   }
 
+  // Function for logging user out
   async function logout() {
     await account.deleteSession("current");
     store.set(null);
