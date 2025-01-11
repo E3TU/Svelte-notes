@@ -1,3 +1,15 @@
+<script>
+  import { user } from "../stores/userStore";
+
+  const login = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    await user.login(formData.get('email'), formData.get('password'));
+  }
+</script>
+
+
+
 <div class="login-flex-container">
     <div class="about-container">
         <div class="about">
@@ -8,19 +20,18 @@
             </p>
         </div>
     </div>
-    <form class="login-form">
+    <form on:submit={login} class="login-form">
         <h1 class="title">Login</h1>
         <label class="email-label" for="email">Email</label>
-        <input class="login-input" name="email" type="text" placeholder="Email" />
+        <input class="login-input" name="email" type="text" placeholder="Email" required />
         <label class="password-label" for="password">Password</label>
-        <input class="login-input" name="password" type="password" placeholder="Password" />
+        <input class="login-input" name="password" type="password" placeholder="Password" required />
         <div class="bottom-wrapper">
             <label class="remember-me">Remember me
                 <input type="checkbox">
             </label>
-            <a class="forgot-password">Forgot Your Password?</a>    
         </div>
-        <button class="login-button">Login</button>
+        <button type="submit" data-type="login" class="login-button">Login</button>
     </form>
 </div>
 
@@ -118,13 +129,6 @@
       input{
         margin-left: 0.25rem;
       }
-    }
-    .forgot-password{
-      margin-left: 6rem;
-      text-decoration: underline;
-    }
-    .forgot-password:hover{
-      cursor: pointer;
     }
     .login-button{
       margin: 1rem;
