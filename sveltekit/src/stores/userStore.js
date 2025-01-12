@@ -11,12 +11,13 @@ const createUser = () => {
   async function init() {
     if (!isBrowser) return;
     try {
-        store.set(await account.get());
+        const currentUser = await account.get();
+        store.set(currentUser);
     } catch (e) {
         console.error("You are not logged in");
         store.set(null);
     }
-}
+  }
 
   init();
 
@@ -34,7 +35,7 @@ const createUser = () => {
     // loggedInUser = await account.get();
     console.log("Logged in successfully");
     await init();
-    goto("/notes");
+    goto("/app");
   }
 
   // Function for logging user out
