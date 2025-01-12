@@ -34,7 +34,7 @@ const createUser = () => {
     // loggedInUser = await account.get();
     console.log("Logged in successfully");
     await init();
-    goto("/");
+    goto("/notes");
   }
 
   // Function for logging user out
