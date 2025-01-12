@@ -1,4 +1,8 @@
 <script>
+  //Import font
+  import "@fontsource-variable/rubik";
+
+  //Import icons
   import Icon from "@iconify/svelte";
   // Dropdown Menu
   let isExpanded = false;
@@ -10,7 +14,7 @@
   // Other Logic
   let notes = [];
   let noteId = 1;
-  
+
   function addNote() {
     const note = {
       id: noteId++,
@@ -24,7 +28,7 @@
   }
 
   function deleteNote(id) {
-    notes = notes.filter(note => note.id !== id);
+    notes = notes.filter((note) => note.id !== id);
     console.log(notes);
   }
   export let createNoteMenu;
@@ -32,9 +36,13 @@
 
 <div class="notes-container">
   <div class="action-bar">
-    <button class="createnote-btn" on:click={createNoteMenu}><Icon icon="ph:plus-bold" class="plussign-icon"/>New Note</button>
+    <button class="createnote-btn" on:click={createNoteMenu}
+      ><Icon icon="ph:plus-bold" class="plussign-icon" />New Note</button
+    >
     <nav class="dropdown-menu">
-      <button on:click|preventDefault={clickHandler} class="dropdown-btn">Sort By<Icon class="dropdown-icon" icon="fe:arrow-down" /></button>
+      <button on:click|preventDefault={clickHandler} class="dropdown-btn"
+        >Sort By<Icon class="dropdown-icon" icon="fe:arrow-down" /></button
+      >
       {#if isExpanded}
         <ul>
           <li>Name</li>
@@ -43,10 +51,10 @@
       {/if}
     </nav>
   </div>
-  
+
   <div class="notes-wrapper">
     <!--Notes go here grrrrr pau pau-->
-    {#each notes as note(note.id)}
+    {#each notes as note (note.id)}
       <div class="note">
         <h1 class="title">{note.title}</h1>
         <p class="content">{note.content}</p>
@@ -54,7 +62,13 @@
           <button id="edit-note">
             <Icon class="edit-btn" icon="material-symbols:edit-outline" />
           </button>
-          <button id="delete-note" on:click={(e) => { e.stopPropagation(); deleteNote(note.id); }}>
+          <button
+            id="delete-note"
+            on:click={(e) => {
+              e.stopPropagation();
+              deleteNote(note.id);
+            }}
+          >
             <Icon class="delete-btn" icon="ic:outline-delete" />
           </button>
         </div>
@@ -71,6 +85,7 @@
     border-radius: 12px;
     width: auto;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    font-family: 'Rubik Variable', sans-serif;
   }
   .action-bar {
     display: flex;
@@ -165,15 +180,15 @@
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     overflow-y: auto;
   }
-  .note::-webkit-scrollbar{
+  .note::-webkit-scrollbar {
     border-radius: 10px;
     scrollbar-width: thin;
   }
-  .note::-webkit-scrollbar-thumb{
+  .note::-webkit-scrollbar-thumb {
     background-color: $lighter-gray;
     border-radius: 8px;
   }
-  .note::-webkit-scrollbar-track{
+  .note::-webkit-scrollbar-track {
     background-color: #151515;
     border-radius: 8px;
   }
@@ -183,7 +198,7 @@
   .content {
     padding: 0.25rem 1.1rem;
   }
-  .control-buttons{
+  .control-buttons {
     display: flex;
     flex: 1;
     width: 100%;
@@ -195,14 +210,14 @@
     background: transparent;
     border: none;
   }
-  #edit-note:hover{
+  #edit-note:hover {
     cursor: pointer;
   }
-  #delete-note{
+  #delete-note {
     background: transparent;
     border: none;
   }
-  #delete-note{
+  #delete-note {
     cursor: pointer;
   }
   :global(.edit-btn) {
@@ -210,16 +225,16 @@
     color: $primary-color;
     transition: 0.5s;
   }
-  :global(.edit-btn):hover{
+  :global(.edit-btn):hover {
     opacity: 0.5;
   }
-  :global(.delete-btn){
+  :global(.delete-btn) {
     font-size: 1.5rem;
     color: $red;
     margin-left: 0.5rem;
     transition: 0.5s;
   }
-  :global(.delete-btn):hover{
+  :global(.delete-btn):hover {
     opacity: 0.5;
   }
 </style>

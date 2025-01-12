@@ -1,33 +1,44 @@
 <script>
-    import Icon from "@iconify/svelte";
-    import { fade } from 'svelte/transition';
-    
-    import {createNoteMenu} from "../stores/CreateNoteMenu.js";
+  // Import Font
+  import "@fontsource-variable/rubik";
+  //Import icons
+  import Icon from "@iconify/svelte";
+  import { fade } from "svelte/transition";
+
+  import { createNoteMenu } from "../stores/CreateNoteMenu.js";
 </script>
 
-<div class="createnote-container" transition:fade={{ delay: 250, duration: 300}}>
-    <div class="createnote">
-        <div class="top-section">
-            <h1 class="createnote-heading">Create new note</h1>
-            <button class="closemenu-btn" on:click|preventDefault={createNoteMenu}>
-                <Icon class="closemenu-icon" icon="basil:cross-outline"/>
-            </button>
-        </div>
-        <div class="bottom-section">
-            <div class="note-title-wrapper">
-                <label for="note-title">Note Title</label>
-                <input id="note-title" placeholder="Enter note title">
-            </div>
-            <div class="note-content-wrapper">
-                <label for="note-content">Note Content</label>
-                <textarea id="note-content" placeholder="Write your note here..." rows="10"></textarea>
-            </div>
-            <button id="save-note-btn">Save Note</button>
-        </div>
+<div
+  class="createnote-container"
+  transition:fade={{ delay: 250, duration: 300 }}
+>
+  <div class="createnote">
+    <div class="top-section">
+      <h1 class="createnote-heading">Create new note</h1>
+      <button class="closemenu-btn" on:click|preventDefault={createNoteMenu}>
+        <Icon class="closemenu-icon" icon="basil:cross-outline" />
+      </button>
     </div>
+    <div class="bottom-section">
+      <div class="note-title-wrapper">
+        <label for="note-title">Note Title</label>
+        <input id="note-title" placeholder="Enter note title" />
+      </div>
+      <div class="note-content-wrapper">
+        <label for="note-content">Note Content</label>
+        <textarea
+          id="note-content"
+          placeholder="Write your note here..."
+          rows="10"
+        ></textarea>
+      </div>
+      <button id="save-note-btn">Save Note</button>
+    </div>
+  </div>
 </div>
+
 <style lang="scss">
-  .createnote-container{
+  .createnote-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -36,8 +47,9 @@
     height: 100vh;
     z-index: 999;
     backdrop-filter: blur(1px); /* Blurs the background */
+    font-family: 'Rubik Variable', sans-serif;
   }
-  .createnote{
+  .createnote {
     display: flex;
     flex-direction: column;
     margin-top: 2rem;
@@ -45,20 +57,22 @@
     height: 40rem;
     background-color: $bg-color;
     border-radius: 12px;
-    box-shadow: rgba(0, 0, 0, 0.10) 0px 2px 4px 0px, rgba(0, 0, 0, 0.80) 0px 2px 16px 0px;
+    box-shadow:
+      rgba(0, 0, 0, 0.1) 0px 2px 4px 0px,
+      rgba(0, 0, 0, 0.8) 0px 2px 16px 0px;
     color: $white;
     cursor: default !important;
   }
-  .top-section{
+  .top-section {
     display: flex;
     flex-direction: row;
   }
-  .createnote-heading{
+  .createnote-heading {
     color: $white;
     margin-top: 1rem;
     margin-left: 1rem;
   }
-  .closemenu-btn{
+  .closemenu-btn {
     height: 2rem;
     width: 2rem;
     margin-left: auto;
@@ -66,31 +80,31 @@
     background: transparent;
     border: none;
   }
-  .closemenu-btn:hover{
+  .closemenu-btn:hover {
     cursor: pointer;
   }
   :global(.closemenu-icon) {
     font-size: 2rem;
     color: $white;
   }
-  .bottom-section{
+  .bottom-section {
     display: flex;
     flex-direction: column;
   }
-  .note-title-wrapper{
+  .note-title-wrapper {
     display: flex;
     flex-direction: column;
   }
-  .note-content-wrapper{
+  .note-content-wrapper {
     display: flex;
     flex-direction: column;
   }
-  label{
+  label {
     margin-top: 1rem;
     margin-left: 1rem;
     font-size: 1.25rem;
   }
-  #note-title{
+  #note-title {
     padding: 1rem;
     margin: 1rem;
     font-size: 1rem;
@@ -101,14 +115,14 @@
     color: $white;
     transition: 0.5s;
   }
-  #note-title:focus{
+  #note-title:focus {
     border: 2px solid $primary-color;
   }
-  #note-title::placeholder{
+  #note-title::placeholder {
     color: $white;
     opacity: 0.7;
   }
-  #note-content{
+  #note-content {
     resize: none;
     margin: 1rem;
     padding: 1rem;
@@ -119,28 +133,28 @@
     outline: none;
     color: $white;
     transition: 0.5s;
-    font-family: 'Rubik Variable', sans-serif;
+    font-family: "Rubik Variable", sans-serif;
   }
-  #note-content:focus{
+  #note-content:focus {
     border: 2px solid $primary-color;
   }
-  #note-content::-webkit-scrollbar{
+  #note-content::-webkit-scrollbar {
     width: 10px;
   }
-  #note-content::-webkit-scrollbar-track{
+  #note-content::-webkit-scrollbar-track {
     background-color: $gray;
     border-radius: 8px;
   }
-  #note-content::-webkit-scrollbar-thumb{
+  #note-content::-webkit-scrollbar-thumb {
     background-color: $primary-color;
     border-radius: 10px;
     height: 30px;
   }
-  #note-content::placeholder{
+  #note-content::placeholder {
     color: $white;
     opacity: 0.7;
   }
-  #save-note-btn{
+  #save-note-btn {
     position: relative;
     padding: 1rem;
     margin: 1rem;
@@ -159,7 +173,7 @@
     transition: 0.5s;
     cursor: pointer;
   }
-  #save-note-btn::before{
+  #save-note-btn::before {
     position: absolute;
     content: "";
     background: $primary-color;
@@ -170,17 +184,17 @@
     height: 100%;
     opacity: 1;
   }
-  #save-note-btn:hover::before{
+  #save-note-btn:hover::before {
     width: 0px;
     height: 100%;
     opacity: 1;
   }
-  #save-note-btn:hover{
+  #save-note-btn:hover {
     background-color: transparent;
     transition: 0.5s;
     color: $primary-color;
   }
-  #save-note-btn:active{
+  #save-note-btn:active {
     top: 2px;
   }
 </style>

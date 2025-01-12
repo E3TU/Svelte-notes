@@ -1,4 +1,7 @@
 <script>
+  //Import font
+  import "@fontsource-variable/rubik";
+  //Import icons
   import Icon from "@iconify/svelte";
 </script>
 
@@ -9,7 +12,9 @@
   <div class="categories-container">
     <div class="top-wrapper">
       <h4 class="categories-heading">Categories</h4>
-      <a title="Add Category" id="add-categorybtn"><Icon icon="tabler:plus" class="plus-icon" /></a>
+      <a title="Add Category" id="add-categorybtn"
+        ><Icon icon="tabler:plus" class="plus-icon" /></a
+      >
     </div>
     <div class="profile-wrapper">
       <!-- <Icon class="profile-icon" icon="gg:profile" /> -->
@@ -33,6 +38,7 @@
     margin: 1rem;
     border-radius: 12px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    font-family: 'Rubik Variable', sans-serif;
   }
   .navbar-heading {
     // margin: 1rem;
@@ -52,7 +58,7 @@
     flex: 1;
     padding-top: 2rem;
   }
-  .top-wrapper{
+  .top-wrapper {
     display: flex;
     flex: 1;
     width: 100%;
@@ -81,12 +87,14 @@
     width: min-content;
     margin-left: 9.5rem;
   }
-  .profile-wrapper{
+  .profile-wrapper {
     display: flex;
     align-items: center;
     // margin: 1rem;
     // background-color: $primary-color;
-    box-shadow: rgba(0, 0, 0, 0.10) 0px 2px 4px 0px, rgba(0, 0, 0, 0.80) 0px 2px 16px 0px;
+    box-shadow:
+      rgba(0, 0, 0, 0.1) 0px 2px 4px 0px,
+      rgba(0, 0, 0, 0.8) 0px 2px 16px 0px;
     height: 4rem;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
@@ -97,11 +105,11 @@
     color: $white;
     font-size: 2rem;
   }
-  .username{
+  .username {
     margin-left: 0.5rem;
     font-size: 1.1rem;
   }
-  .settings-wrapper{
+  .settings-wrapper {
     display: flex;
     flex-direction: column;
     flex: 1;
