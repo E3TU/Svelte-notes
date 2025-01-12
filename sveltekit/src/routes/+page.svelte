@@ -5,17 +5,15 @@
   // Import Components
   import Sidebar from "../components/Sidebar.svelte";
   import Searchbar from "../components/Searchbar.svelte";
-  import Notes from "../components/Notes.svelte";
   import Createnote from "../components/Createnote.svelte";
-  import Login from "../components/Login.svelte";
-  import Register from "../components/Register.svelte";
-  
   // Import Store(s)
   import {createNoteMenu, isMenuOpen} from "../stores/CreateNoteMenu.js";
+  import Register from "./register/+page.svelte";
 
 </script>
 
 <div class="flex-container">
+
     <Register />
    <!-- {#if $isMenuOpen}
        <Createnote />
@@ -35,7 +33,6 @@
     flex-direction: row;
     height: 100vh;
     width: 100vw;
-    background-color: $bg-color;
     font-family: "Rubik Variable", sans-serif;
     z-index: 1000;
   }

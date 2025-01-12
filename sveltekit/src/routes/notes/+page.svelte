@@ -1,4 +1,6 @@
 <script>
+  import Searchbar from "../../components/Searchbar.svelte";
+  import Sidebar from "../../components/Sidebar.svelte";
   import Icon from "@iconify/svelte";
   // Dropdown Menu
   let isExpanded = false;
@@ -29,7 +31,8 @@
   }
   export let createNoteMenu;
 </script>
-
+<Searchbar />
+  <Sidebar />
 <div class="notes-container">
   <div class="action-bar">
     <button class="createnote-btn" on:click={createNoteMenu}><Icon icon="ph:plus-bold" class="plussign-icon"/>New Note</button>

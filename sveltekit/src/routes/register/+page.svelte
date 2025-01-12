@@ -1,14 +1,29 @@
 <script>
-    import { user } from '../stores/userStore';
+  import { user } from "../../stores/userStore";
 
-    // Register user
-    const register = async (e) => {
-      e.preventDefault();
-      const formData = new FormData(e.target);
-      await user.register(formData.get('email'), formData.get('password'), formData.get('username'));
-    };
+  // Register user
+  const register = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    await user.register(
+      formData.get("email"),
+      formData.get("password"),
+      formData.get("username")
+    );
+  };
+
+  let password = "";
+  let confirmPassword = "";
+
+  const checkPassword = (e) => {
+    e.preventDefault();
+    if (password !== confirmPassword) {
+      alert("Passwords do not match");
+    } else {
+      register(e);
+    }
+  };
 </script>
-
 
 <div class="register-flex-container">
   <div class="about-container">
@@ -26,8 +41,11 @@
       </p>
     </div>
   </div>
-  <form on:submit={register} class="register-form">
+  <form on:submit={checkPassword} class="register-form">
     <h1 class="title">Register</h1>
+    <p class="already-account">
+      Already have an account? <a href="/login" class="colored-text">Log in</a>
+    </p>
     <label class="username-label" for="username">Username</label>
     <input
       class="register-input"
@@ -51,15 +69,31 @@
       name="password"
       type="password"
       placeholder="Password"
+      bind:value={password}
       required
     />
+
+    <label class="confirm-password-label" for="confirm-password"
+      >Confirm password</label
+    >
+    <input
+      class="register-input"
+      name="password"
+      type="password"
+      placeholder="Confirm password"
+      bind:value={confirmPassword}
+      required
+    />
+
     <div class="bottom-wrapper">
       <label class="remember-me"
         >Remember me
         <input type="checkbox" />
       </label>
     </div>
-    <button type="submit" data-type="register" class="register-button">Register</button>
+    <button type="submit" data-type="register" class="register-button"
+      >Register</button
+    >
   </form>
 </div>
 
@@ -113,24 +147,24 @@
     flex-direction: column;
     border-radius: 12px;
     color: $white;
-    padding-top: 15rem;
+    padding-top: 8rem;
     padding-left: 30rem;
   }
   .title {
     font-size: 2rem;
     padding: 1rem;
   }
-  .username-label {
+  .already-account {
     padding-left: 1rem;
     padding-top: 0.5rem;
-    font-size: 1.2rem;
+    padding-bottom: 0.5rem;
   }
-  .email-label {
-    padding-left: 1rem;
-    padding-top: 0.5rem;
-    font-size: 1.2rem;
+  .colored-text {
+    color: $primary-color;
+    cursor: pointer;
+    text-decoration: underline;
   }
-  .password-label {
+  label {
     padding-left: 1rem;
     padding-top: 0.5rem;
     font-size: 1.2rem;
