@@ -1,18 +1,4 @@
-<script>
-import { account } from "$lib/appwrite";
-import { user } from "../../stores/userStore";
-
-  const login = async (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    await user.login(formData.get('email'), formData.get('password'));
-
-  }
-</script>
-
-
-
-<div class="login-flex-container">
+<!-- <div class="login-flex-container">
     <div class="about-container">
         <div class="about">
             <div class="corner"></div>
@@ -22,7 +8,7 @@ import { user } from "../../stores/userStore";
             </p>
         </div>
     </div>
-    <form on:submit={login} class="login-form">
+    <form class="login-form">
         <h1 class="title">Login</h1>
         <label class="email-label" for="email">Email</label>
         <input class="login-input" name="email" type="text" placeholder="Email" required />
@@ -150,4 +136,6 @@ import { user } from "../../stores/userStore";
       cursor: pointer;
       transition: 0.5s;
     }
-</style>
+</style> -->
+
+<h1>Hello world</h1>

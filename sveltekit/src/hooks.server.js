@@ -1,19 +1,11 @@
-import { account } from "$lib/appwrite";
-import { redirect } from "@sveltejs/kit";
+import { createSessionClient } from "./lib/server/appwrite";
 
 export async function handle({ event, resolve }) {
-    let currentUser = null;
-    
     try {
-        currentUser = await account.get();
-    } catch (e) {
-        currentUser = null;
-    }
+        const { account } = createSessionClient(event);
 
-    if (event.url.pathname.startsWith("/app") && !currentUser) {
-        throw redirect(302, "/login");
-    }
-
+        event.locals.user = await account.get();
+    } catch{}
 
     return resolve(event);
 }

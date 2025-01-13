@@ -1,30 +1,3 @@
-<script>
-  import { user } from "../../stores/userStore";
-
-  // Register user
-  const register = async (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    await user.register(
-      formData.get("email"),
-      formData.get("password"),
-      formData.get("username")
-    );
-  };
-
-  let password = "";
-  let confirmPassword = "";
-
-  const checkPassword = (e) => {
-    e.preventDefault();
-    if (password !== confirmPassword) {
-      alert("Passwords do not match");
-    } else {
-      register(e);
-    }
-  };
-</script>
-
 <div class="register-flex-container">
   <div class="about-container">
     <div class="about">
@@ -41,7 +14,7 @@
       </p>
     </div>
   </div>
-  <form on:submit={checkPassword} class="register-form">
+  <form action="?/register" method="post" class="register-form">
     <h1 class="title">Register</h1>
     <p class="already-account">
       Already have an account? <a href="/login" class="colored-text">Log in</a>
@@ -49,7 +22,8 @@
     <label class="username-label" for="username">Username</label>
     <input
       class="register-input"
-      name="username"
+      id="name"
+      name="name"
       type="text"
       placeholder="Username"
     />
@@ -57,6 +31,7 @@
     <label class="email-label" for="email">Email</label>
     <input
       class="register-input"
+      id="email"
       name="email"
       type="email"
       placeholder="Email"
@@ -66,14 +41,14 @@
     <label class="password-label" for="password">Password</label>
     <input
       class="register-input"
+      id="password"
       name="password"
       type="password"
       placeholder="Password"
-      bind:value={password}
       required
     />
 
-    <label class="confirm-password-label" for="confirm-password"
+    <!-- <label class="confirm-password-label" for="confirm-password"
       >Confirm password</label
     >
     <input
@@ -81,9 +56,8 @@
       name="password"
       type="password"
       placeholder="Confirm password"
-      bind:value={confirmPassword}
       required
-    />
+    /> -->
 
     <div class="bottom-wrapper">
       <label class="remember-me"
@@ -91,7 +65,7 @@
         <input type="checkbox" />
       </label>
     </div>
-    <button type="submit" data-type="register" class="register-button"
+    <button type="submit" class="register-button"
       >Register</button
     >
   </form>
