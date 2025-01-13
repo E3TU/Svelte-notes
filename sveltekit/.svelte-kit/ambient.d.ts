@@ -26,7 +26,7 @@
  * ```
  */
 declare module '$env/static/private' {
-	export const VITE_PROJECT_ID: string;
+	export const APPWRITE_KEY: string;
 	export const SHELL: string;
 	export const npm_command: string;
 	export const SESSION_MANAGER: string;
@@ -129,7 +129,8 @@ declare module '$env/static/private' {
  * ```
  */
 declare module '$env/static/public' {
-	
+	export const PUBLIC_APPWRITE_PROJECT: string;
+	export const PUBLIC_APPWRITE_ENDPOINT: string;
 }
 
 /**
@@ -148,7 +149,7 @@ declare module '$env/static/public' {
  */
 declare module '$env/dynamic/private' {
 	export const env: {
-		VITE_PROJECT_ID: string;
+		APPWRITE_KEY: string;
 		SHELL: string;
 		npm_command: string;
 		SESSION_MANAGER: string;
@@ -258,6 +259,8 @@ declare module '$env/dynamic/private' {
  */
 declare module '$env/dynamic/public' {
 	export const env: {
+		PUBLIC_APPWRITE_PROJECT: string;
+		PUBLIC_APPWRITE_ENDPOINT: string;
 		[key: `PUBLIC_${string}`]: string | undefined;
 	}
 }
