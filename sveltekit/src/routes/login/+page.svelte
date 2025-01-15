@@ -1,4 +1,4 @@
-<!-- <div class="login-flex-container">
+<div class="login-flex-container">
     <div class="about-container">
         <div class="about">
             <div class="corner"></div>
@@ -8,18 +8,18 @@
             </p>
         </div>
     </div>
-    <form class="login-form">
+    <form action="?/login" method="post" class="login-form">
         <h1 class="title">Login</h1>
         <label class="email-label" for="email">Email</label>
-        <input class="login-input" name="email" type="text" placeholder="Email" required />
-        <label class="password-label" for="password">Password</label>
+        <input id="email" class="login-input" name="email" type="text" placeholder="Email" required />
+        <label id="password" class="password-label" for="password">Password</label>
         <input class="login-input" name="password" type="password" placeholder="Password" required />
         <div class="bottom-wrapper">
             <label class="remember-me">Remember me
                 <input type="checkbox">
             </label>
         </div>
-        <button type="submit" data-type="login" class="login-button">Login</button>
+        <button type="submit" class="login-button">Login</button>
     </form>
 </div>
 
@@ -136,6 +136,5 @@
       cursor: pointer;
       transition: 0.5s;
     }
-</style> -->
+</style>
 
-<h1>Hello world</h1>
