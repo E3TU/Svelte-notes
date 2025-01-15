@@ -24,6 +24,9 @@
       <div title="Settings" class="settings-wrapper">
         <Icon class="settings-icon" icon="material-symbols:settings" />
       </div>
+      <div title="Log out" class="logout-wrapper">
+        <Icon class="logout-icon" icon="uil:signout" />
+      </div>
     </div>
   </div>
 </div>
@@ -124,6 +127,17 @@
   }
   :global(.settings-icon):hover {
     rotate: 180deg;
+    cursor: pointer;
+  }
+  :global(.logout-icon) {
+    color: $white;
+    vertical-align: bottom;
+    margin-right: 1rem;
+    font-size: 1.25rem;
+    transition: 1s;
+  }
+  :global(.logout-icon):hover {
+    color: $red;
     cursor: pointer;
   }
 </style>
