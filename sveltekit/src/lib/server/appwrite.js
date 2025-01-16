@@ -2,7 +2,7 @@ import { Client, Account } from "node-appwrite";
 import { APPWRITE_KEY } from "$env/static/private"
 import { PUBLIC_APPWRITE_ENDPOINT, PUBLIC_APPWRITE_PROJECT } from "$env/static/public";
 
-export const SESSION_COOKIE = "my-custom-session";
+export const SESSION_COOKIE = "user-session";
 
 
 export function createAdminClient() {
