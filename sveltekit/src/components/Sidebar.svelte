@@ -25,7 +25,9 @@
         <Icon class="settings-icon" icon="material-symbols:settings" />
       </div>
       <div title="Log out" class="logout-wrapper">
-        <Icon class="logout-icon" icon="uil:signout" />
+        <form class="logout-form" method="post">
+          <button class="logout-btn" type="submit"><Icon class="logout-icon" icon="uil:signout" /></button>
+         </form>
       </div>
     </div>
   </div>
@@ -128,6 +130,11 @@
   :global(.settings-icon):hover {
     rotate: 180deg;
     cursor: pointer;
+  }
+  .logout-btn{
+    background-color: transparent;
+    outline: none;
+    border: none;
   }
   :global(.logout-icon) {
     color: $white;
