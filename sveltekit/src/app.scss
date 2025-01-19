@@ -10,3 +10,8 @@ body{
     box-sizing: border-box;
     background-color: $bg-color;
 }
+.colored-text {
+    color: $primary-color;
+    cursor: pointer;
+    text-decoration: underline;
+  }

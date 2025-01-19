@@ -157,11 +157,6 @@
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
   }
-  .colored-text {
-    color: $primary-color;
-    cursor: pointer;
-    text-decoration: underline;
-  }
   label {
     padding-left: 1rem;
     padding-top: 0.5rem;
