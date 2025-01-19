@@ -1,3 +1,25 @@
+<script>
+  let password = "";
+  let confirmPassword = "";
+
+  // Function to check if passwords match
+  const checkPassword = (e) => {
+    e.preventDefault();
+
+    // Get the form element
+    const form = e.target;
+
+    if (password !== confirmPassword) {
+      alert("Passwords do not match");
+    } else{
+      // Submit the form
+      form.submit();
+    }
+  }
+
+</script>
+
+
 <div class="register-flex-container">
   <div class="about-container">
     <div class="about">
@@ -14,7 +36,7 @@
       </p>
     </div>
   </div>
-  <form action="?/register" method="post" class="register-form">
+  <form action="?/register" method="post" class="register-form" on:submit={checkPassword}>
     <h1 class="title">Register</h1>
     <p class="already-account">
       Already have an account? <a href="/login" class="colored-text">Log in</a>
@@ -45,10 +67,11 @@
       name="password"
       type="password"
       placeholder="Password"
+      bind:value={password}
       required
     />
 
-    <!-- <label class="confirm-password-label" for="confirm-password"
+    <label class="confirm-password-label" for="confirm-password"
       >Confirm password</label
     >
     <input
@@ -56,8 +79,9 @@
       name="password"
       type="password"
       placeholder="Confirm password"
+      bind:value={confirmPassword}
       required
-    /> -->
+    />
 
     <div class="bottom-wrapper">
       <label class="remember-me"
