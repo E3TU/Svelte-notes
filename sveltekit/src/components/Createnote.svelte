@@ -6,6 +6,8 @@
   import { fade } from "svelte/transition";
 
   import { createNoteMenu } from "../stores/CreateNoteMenu.js";
+
+  import { addNote } from "../stores/notesStore.js";
 </script>
 
 <div
@@ -32,7 +34,7 @@
           rows="10"
         ></textarea>
       </div>
-      <button id="save-note-btn">Save Note</button>
+      <button on:click={addNote} id="save-note-btn">Save Note</button>
     </div>
   </div>
 </div>

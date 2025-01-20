@@ -11,26 +11,28 @@
     isExpanded = !isExpanded;
   }
 
+  import { notes, deleteNote } from "../stores/notesStore";
+
   // Other Logic
-  let notes = [];
-  let noteId = 1;
+  // let notes = [];
+  // let noteId = 1;
 
-  function addNote() {
-    const note = {
-      id: noteId++,
-      title: "Test",
-      content: "test",
-      Created: Date.now(),
-    };
+  // function addNote() {
+  //   const note = {
+  //     id: noteId++,
+  //     title: "Test",
+  //     content: "test",
+  //     Created: Date.now(),
+  //   };
 
-    notes = [...notes, note];
-    console.log(notes);
-  }
+  //   notes = [...notes, note];
+  //   console.log(notes);
+  // }
 
-  function deleteNote(id) {
-    notes = notes.filter((note) => note.id !== id);
-    console.log(notes);
-  }
+  // function deleteNote(id) {
+  //   notes = notes.filter((note) => note.id !== id);
+  //   console.log(notes);
+  // }
   export let createNoteMenu;
 </script>
 
@@ -54,7 +56,7 @@
 
   <div class="notes-wrapper">
     <!--Notes go here grrrrr pau pau-->
-    {#each notes as note (note.id)}
+    {#each $notes as note (note.id)}
       <div class="note">
         <h1 class="title">{note.title}</h1>
         <p class="content">{note.content}</p>
