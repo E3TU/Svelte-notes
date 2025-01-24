@@ -13,6 +13,9 @@
 
   import { notes, deleteNote } from "../stores/notesStore";
 
+  import { fade } from "svelte/transition";
+
+
   // Other Logic
   // let notes = [];
   // let noteId = 1;
@@ -57,7 +60,7 @@
   <div class="notes-wrapper">
     <!--Notes go here grrrrr pau pau-->
     {#each $notes as note (note.id)}
-      <div class="note">
+      <div class="note" transition:fade={{ delay: 250, duration: 300 }}>
         <h1 class="title">{note.title}</h1>
         <p class="content">{note.content}</p>
         <div class="control-buttons">
