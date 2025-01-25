@@ -7,7 +7,16 @@
 
   import { createNoteMenu } from "../stores/CreateNoteMenu.js";
 
-  import { addNote } from "../stores/notesStore.js";
+  import {addNote, title, content } from "../stores/notesStore.js";
+
+  function handleaddNote() {
+    addNote($title, $content);
+
+    title.set("");
+    content.set("");
+
+    createNoteMenu();
+  }
 </script>
 
 <div
@@ -24,17 +33,18 @@
     <div class="bottom-section">
       <div class="note-title-wrapper">
         <label for="note-title">Note Title</label>
-        <input id="note-title" placeholder="Enter note title" />
+        <input bind:value={$title} id="note-title" placeholder="Enter note title" />
       </div>
       <div class="note-content-wrapper">
         <label for="note-content">Note Content</label>
         <textarea
+          bind:value={$content}
           id="note-content"
           placeholder="Write your note here..."
           rows="10"
         ></textarea>
       </div>
-      <button on:click={addNote} id="save-note-btn">Save Note</button>
+      <button on:click|preventDefault={handleaddNote} id="save-note-btn">Save Note</button>
     </div>
   </div>
 </div>
