@@ -1,25 +1,26 @@
 import { writable } from "svelte/store";
 
-// export let test = writable("Kurwa");
-
 export let notes = writable([]);
+export let title = writable("");
+export let content = writable("");
 let noteId = 1;
 
-export function addNote() {
-  const note = {
-    id: noteId++,
-    title: "Test",
-    content: "test",
-    Created: Date.now(),
-  };
 
-//   notes = [...notes, note];
-    notes.update((currentNotes) => [...currentNotes, note]);
-  console.log(notes);
+export function addNote(noteTitle, noteContent) {
+  notes.update((currentNotes) => {
+    const note = {
+      id: noteId++,
+      title: noteTitle,
+      content: noteContent,
+      Created: Date.now(),
+    };
+    return [...currentNotes, note]
+    // notes.update((currentNotes) => [...currentNotes, note]);
+  });
 }
 
 export function deleteNote(id) {
-//   notes = notes.filter((note) => note.id !== id);
+  //   notes = notes.filter((note) => note.id !== id);
     notes.update((currentNotes) => currentNotes.filter((note) => note.id !== id));
-  console.log(notes);
-}
+    // console.log(notes);
+  }
