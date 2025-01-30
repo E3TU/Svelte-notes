@@ -15,27 +15,6 @@
 
   import { fade } from "svelte/transition";
 
-
-  // Other Logic
-  // let notes = [];
-  // let noteId = 1;
-
-  // function addNote() {
-  //   const note = {
-  //     id: noteId++,
-  //     title: "Test",
-  //     content: "test",
-  //     Created: Date.now(),
-  //   };
-
-  //   notes = [...notes, note];
-  //   console.log(notes);
-  // }
-
-  // function deleteNote(id) {
-  //   notes = notes.filter((note) => note.id !== id);
-  //   console.log(notes);
-  // }
   export let createNoteMenu;
 </script>
 
