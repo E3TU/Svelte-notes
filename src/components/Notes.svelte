@@ -11,16 +11,22 @@
     isExpanded = !isExpanded;
   }
 
-  import { notes, deleteNote } from "../stores/notesStore";
+  import { notes, note, deleteNote } from "../stores/notesStore";
 
   import { fade } from "svelte/transition";
 
-  export let createNoteMenu;
+  function openEditModal(selectedNote) {
+    note.set(selectedNote); // Set the selected note in the store
+    noteEditMenu(); // Open the edit modal
+  }
+
+  export let noteCreationMenu;
+  export let noteEditMenu;
 </script>
 
 <div class="notes-container">
   <div class="action-bar">
-    <button class="createnote-btn" on:click={createNoteMenu}
+    <button class="createnote-btn" on:click={noteCreationMenu}
       ><Icon icon="ph:plus-bold" class="plussign-icon" />New Note</button
     >
     <nav class="dropdown-menu">
@@ -43,7 +49,7 @@
         <h1 class="title">{note.title}</h1>
         <p class="content">{note.content}</p>
         <div class="control-buttons">
-          <button id="edit-note">
+          <button on:click={() => openEditModal(note) } id="edit-note">
             <Icon class="edit-btn" icon="material-symbols:edit-outline" />
           </button>
           <button
