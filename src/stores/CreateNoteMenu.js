@@ -1,7 +1,7 @@
 import { writable } from 'svelte/store';
 
-export const isMenuOpen = writable(false);
+export const isCreateNoteMenuOpen = writable(false);
 
 export function createNoteMenu() {
-    isMenuOpen.update(value => !value);
+    isCreateNoteMenuOpen.update(value => !value);
 }
