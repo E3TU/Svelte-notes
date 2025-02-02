@@ -10,11 +10,14 @@
   import {addNote, title, content } from "../stores/notesStore.js";
 
   function handleaddNote() {
+    // Call function to add new notes to notesStore
     addNote($title, $content);
 
+    // Clear both input and textarea
     title.set("");
     content.set("");
 
+    // Close note creation menu
     createNoteMenu();
   }
 </script>

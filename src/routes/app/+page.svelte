@@ -4,11 +4,11 @@
   import Searchbar from "../../components/Searchbar.svelte";
   import Sidebar from "../../components/Sidebar.svelte";
   import Createnotemodal from "../../components/Createnotemodal.svelte";
+  import Editnotemodal from "../../components/Editnotemodal.svelte";
 
   // Import Store(s)
   import { createNoteMenu, isCreateNoteMenuOpen } from "../../stores/CreateNoteMenu";
   import { editNoteMenu, isEditNoteMenuOpen } from "../../stores/EditNoteMenu";
-  import Editnotemodal from "../../components/Editnotemodal.svelte";
   
 </script>
 
@@ -26,7 +26,7 @@
   </div>
   <div class="flex-items-right">
     <Searchbar />
-    <!--Pass notecreationmenu and noteedit menu as props to notes component-->
+    <!--Pass notecreationmenu and noteeditmenu as props to notes component-->
     <Notes noteCreationMenu={createNoteMenu} noteEditMenu={editNoteMenu} />
   </div>
 </div>

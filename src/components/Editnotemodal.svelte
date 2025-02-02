@@ -13,7 +13,9 @@
   let updatedContent = $note.content;
 
   function handleEditNote() {
+    // Call function to update notesStore with new title and content
     editNote($note.id, updatedTitle, updatedContent);
+    // Close the note editing menu
     editNoteMenu();
   }
 

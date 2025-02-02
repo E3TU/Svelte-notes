@@ -1,11 +1,14 @@
 import { writable } from "svelte/store";
 
+//Declare writable stores
 export let notes = writable([]);
 export let note = writable({});
 export let title = writable("");
 export let content = writable("");
+// Declare variable for note id
 let noteId = 1;
 
+// Function to add notes
 export function addNote(noteTitle, noteContent) {
   notes.update((currentNotes) => {
     const newNote = {
@@ -18,6 +21,7 @@ export function addNote(noteTitle, noteContent) {
   });
 }
 
+// Function to edit notes
 export function editNote(id, newTitle, newContent) {
   notes.update((currentNotes) => {
     return currentNotes.map((note) => {
@@ -29,6 +33,7 @@ export function editNote(id, newTitle, newContent) {
   });
 }
 
+// Function to delete notes
 export function deleteNote(id) {
   notes.update((currentNotes) => currentNotes.filter((note) => note.id !== id));
 }
