@@ -6,30 +6,38 @@
   import Createnotemodal from "../../components/Createnotemodal.svelte";
   import Editnotemodal from "../../components/Editnotemodal.svelte";
 
+  // Import page transitions compoonent
+  import Pagetransitions from "../../components/Pagetransitions.svelte";
+
   // Import Store(s)
   import { createNoteMenu, isCreateNoteMenuOpen } from "../../stores/CreateNoteMenu";
   import { editNoteMenu, isEditNoteMenuOpen } from "../../stores/EditNoteMenu";
   
+  export let username;
+  console.log(username);
+
 </script>
 
-<div class="flex-container">
-  <!--Show note creation modal when new note button is pressed-->
-  {#if $isCreateNoteMenuOpen}
-    <Createnotemodal />
-  {/if}
-  <!--Show note edit modal when edit note button is pressed-->
-  {#if $isEditNoteMenuOpen}
-    <Editnotemodal />
-  {/if}
-  <div class="flex-items-left">
-    <Sidebar />
+<Pagetransitions>
+  <div class="flex-container">
+    <!--Show note creation modal when new note button is pressed-->
+    {#if $isCreateNoteMenuOpen}
+      <Createnotemodal />
+    {/if}
+    <!--Show note edit modal when edit note button is pressed-->
+    {#if $isEditNoteMenuOpen}
+      <Editnotemodal />
+    {/if}
+    <div class="flex-items-left">
+      <Sidebar />
+    </div>
+    <div class="flex-items-right">
+      <Searchbar />
+      <!--Pass notecreationmenu and noteeditmenu as props to notes component-->
+      <Notes noteCreationMenu={createNoteMenu} noteEditMenu={editNoteMenu} />
+    </div>
   </div>
-  <div class="flex-items-right">
-    <Searchbar />
-    <!--Pass notecreationmenu and noteeditmenu as props to notes component-->
-    <Notes noteCreationMenu={createNoteMenu} noteEditMenu={editNoteMenu} />
-  </div>
-</div>
+</Pagetransitions>
 
 <style lang="scss">
   .flex-container {

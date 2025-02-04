@@ -1,50 +1,60 @@
-<div class="login-flex-container">
-  <div class="about-container">
-    <div class="about">
-      <div class="corner"></div>
-      <h1 class="about-header">Notes App</h1>
-      <p class="about-text">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-        mollit anim id est laborum.
+<script>
+    // Import page transitions compoonent
+  import Pagetransitions from "../../components/Pagetransitions.svelte";
+</script>
+
+<Pagetransitions>
+  <div class="login-flex-container">
+    <div class="about-container">
+      <div class="about">
+        <div class="corner"></div>
+        <h1 class="about-header">Notes App</h1>
+        <p class="about-text">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+          culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+      </div>
+    </div>
+    <form action="?/login" method="post" class="login-form">
+      <h1 class="title">Login</h1>
+      <p class="register-here">
+        Dont have an account? <a class="colored-text" href="/register"
+          >Register here</a
+        >
       </p>
-    </div>
+      <label class="email-label" for="email">Email</label>
+      <input
+        id="email"
+        class="login-input"
+        name="email"
+        type="text"
+        placeholder="Email"
+        required
+      />
+      <label id="password" class="password-label" for="password">Password</label
+      >
+      <input
+        class="login-input"
+        name="password"
+        type="password"
+        placeholder="Password"
+        required
+      />
+      <div class="bottom-wrapper">
+        <label class="remember-me"
+          >Remember me
+          <input type="checkbox" />
+        </label>
+      </div>
+      <button type="submit" class="login-button">Login</button>
+    </form>
   </div>
-  <form action="?/login" method="post" class="login-form">
-    <h1 class="title">Login</h1>
-    <p class="register-here">
-      Dont have an account? <a class="colored-text" href="/register">Register here</a>
-    </p>
-    <label class="email-label" for="email">Email</label>
-    <input
-      id="email"
-      class="login-input"
-      name="email"
-      type="text"
-      placeholder="Email"
-      required
-    />
-    <label id="password" class="password-label" for="password">Password</label>
-    <input
-      class="login-input"
-      name="password"
-      type="password"
-      placeholder="Password"
-      required
-    />
-    <div class="bottom-wrapper">
-      <label class="remember-me"
-        >Remember me
-        <input type="checkbox" />
-      </label>
-    </div>
-    <button type="submit" class="login-button">Login</button>
-  </form>
-</div>
+</Pagetransitions>
 
 <style lang="scss">
   .login-flex-container {

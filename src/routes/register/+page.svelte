@@ -1,4 +1,7 @@
 <script>
+    // Import page transitions compoonent
+    import Pagetransitions from "../../components/Pagetransitions.svelte";
+
   let password = "";
   let confirmPassword = "";
 
@@ -11,89 +14,93 @@
 
     if (password !== confirmPassword) {
       alert("Passwords do not match");
-    } else{
+    } else {
       // Submit the form
       form.submit();
     }
-  }
-
+  };
 </script>
 
-
-<div class="register-flex-container">
-  <div class="about-container">
-    <div class="about">
-      <div class="corner"></div>
-      <h1 class="about-header">Notes App</h1>
-      <p class="about-text">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-        mollit anim id est laborum.
+<Pagetransitions>
+  <div class="register-flex-container">
+    <div class="about-container">
+      <div class="about">
+        <div class="corner"></div>
+        <h1 class="about-header">Notes App</h1>
+        <p class="about-text">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+          culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+      </div>
+    </div>
+    <form
+      action="?/register"
+      method="post"
+      class="register-form"
+      on:submit={checkPassword}
+    >
+      <h1 class="title">Register</h1>
+      <p class="already-account">
+        Already have an account? <a href="/login" class="colored-text">Log in</a
+        >
       </p>
-    </div>
+      <label class="username-label" for="username">Username</label>
+      <input
+        class="register-input"
+        id="name"
+        name="name"
+        type="text"
+        placeholder="Username"
+      />
+
+      <label class="email-label" for="email">Email</label>
+      <input
+        class="register-input"
+        id="email"
+        name="email"
+        type="email"
+        placeholder="Email"
+        required
+      />
+
+      <label class="password-label" for="password">Password</label>
+      <input
+        class="register-input"
+        id="password"
+        name="password"
+        type="password"
+        placeholder="Password"
+        bind:value={password}
+        required
+      />
+
+      <label class="confirm-password-label" for="confirm-password"
+        >Confirm password</label
+      >
+      <input
+        class="register-input"
+        name="password"
+        type="password"
+        placeholder="Confirm password"
+        bind:value={confirmPassword}
+        required
+      />
+
+      <div class="bottom-wrapper">
+        <label class="remember-me"
+          >Remember me
+          <input type="checkbox" />
+        </label>
+      </div>
+      <button type="submit" class="register-button">Register</button>
+    </form>
   </div>
-  <form action="?/register" method="post" class="register-form" on:submit={checkPassword}>
-    <h1 class="title">Register</h1>
-    <p class="already-account">
-      Already have an account? <a href="/login" class="colored-text">Log in</a>
-    </p>
-    <label class="username-label" for="username">Username</label>
-    <input
-      class="register-input"
-      id="name"
-      name="name"
-      type="text"
-      placeholder="Username"
-    />
-
-    <label class="email-label" for="email">Email</label>
-    <input
-      class="register-input"
-      id="email"
-      name="email"
-      type="email"
-      placeholder="Email"
-      required
-    />
-
-    <label class="password-label" for="password">Password</label>
-    <input
-      class="register-input"
-      id="password"
-      name="password"
-      type="password"
-      placeholder="Password"
-      bind:value={password}
-      required
-    />
-
-    <label class="confirm-password-label" for="confirm-password"
-      >Confirm password</label
-    >
-    <input
-      class="register-input"
-      name="password"
-      type="password"
-      placeholder="Confirm password"
-      bind:value={confirmPassword}
-      required
-    />
-
-    <div class="bottom-wrapper">
-      <label class="remember-me"
-        >Remember me
-        <input type="checkbox" />
-      </label>
-    </div>
-    <button type="submit" class="register-button"
-      >Register</button
-    >
-  </form>
-</div>
+</Pagetransitions>
 
 <style lang="scss">
   .register-flex-container {
