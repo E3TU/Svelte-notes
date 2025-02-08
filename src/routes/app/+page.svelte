@@ -13,9 +13,9 @@
   import { createNoteMenu, isCreateNoteMenuOpen } from "../../stores/CreateNoteMenu";
   import { editNoteMenu, isEditNoteMenuOpen } from "../../stores/EditNoteMenu";
   
-  export let username;
-  console.log(username);
-
+  export let data;
+  const { user } = data;
+  const username = user.name;
 </script>
 
 <Pagetransitions>
@@ -29,7 +29,8 @@
       <Editnotemodal />
     {/if}
     <div class="flex-items-left">
-      <Sidebar />
+      <!--Pass username to sidebar component as prop-->
+      <Sidebar userName={username} />
     </div>
     <div class="flex-items-right">
       <Searchbar />

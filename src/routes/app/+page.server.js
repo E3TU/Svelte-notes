@@ -5,10 +5,9 @@ import { redirect } from "@sveltejs/kit";
 export async function load({ locals }) {
     if (!locals.user) redirect(302, "/register");
 
-    const username = locals.user.name;
 
     return{
-        user: locals.user, props: { username }
+        user: locals.user,
     };
 }
 

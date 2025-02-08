@@ -3,6 +3,8 @@
   import "@fontsource-variable/rubik";
   //Import icons
   import Icon from "@iconify/svelte";
+
+  export let userName;
 </script>
 
 <div class="sidebar-container">
@@ -20,7 +22,7 @@
       <!-- <Icon class="profile-icon" icon="gg:profile" /> -->
       <!-- <Icon class="profile-icon" icon="iconamoon:profile-circle-fill" /> -->
       <Icon class="profile-icon" icon="pajamas:profile" />
-      <p title="Username" class="username">Joe Mama</p>
+      <p title={userName} class="username">{userName}</p>
       <div title="Settings" class="settings-wrapper">
         <Icon class="settings-icon" icon="material-symbols:settings" />
       </div>
@@ -108,11 +110,16 @@
   :global(.profile-icon) {
     margin-left: 0.5rem;
     color: $white;
-    font-size: 2rem;
+    font-size: 2rem !important;
   }
   .username {
     margin-left: 0.5rem;
     font-size: 1.1rem;
+    width: 10rem;
+    overflow: hidden;
+    word-wrap: break-word;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
   .settings-wrapper {
     display: flex;
