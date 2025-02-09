@@ -1,18 +1,20 @@
 import { writable } from "svelte/store";
+import { v4 as uuidv4 } from "uuid";
 
 //Declare writable stores
 export let notes = writable([]);
 export let note = writable({});
 export let title = writable("");
 export let content = writable("");
-// Declare variable for note id
-let noteId = 1;
 
 // Function to add notes
 export function addNote(noteTitle, noteContent) {
+  const newId = uuidv4();
+  console.log(newId);
+
   notes.update((currentNotes) => {
     const newNote = {
-      id: noteId++,
+      id: newId,
       title: noteTitle,
       content: noteContent,
       Created: Date.now(),
