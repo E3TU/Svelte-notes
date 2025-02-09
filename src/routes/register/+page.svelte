@@ -1,6 +1,6 @@
 <script>
-    // Import page transitions compoonent
-    import Pagetransitions from "../../components/Pagetransitions.svelte";
+  // Import page transitions compoonent
+  import Pagetransitions from "../../components/Pagetransitions.svelte";
 
   let password = "";
   let confirmPassword = "";

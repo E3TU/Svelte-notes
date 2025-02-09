@@ -7,7 +7,7 @@
   import Editnotemodal from "../../components/Editnotemodal.svelte";
   import LogoutconfirmModal from "../../components/LogoutconfirmModal.svelte";
 
-  // Import page transitions compoonent
+  // Import page transitions compoonent that is used to have animations between component transtitions
   import Pagetransitions from "../../components/Pagetransitions.svelte";
 
   // Import Store(s)
