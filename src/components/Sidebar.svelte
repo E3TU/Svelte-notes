@@ -5,6 +5,7 @@
   import Icon from "@iconify/svelte";
 
   export let userName;
+  export let logoutModal;
 </script>
 
 <div class="sidebar-container">
@@ -27,9 +28,10 @@
         <Icon class="settings-icon" icon="material-symbols:settings" />
       </div>
       <div title="Log out" class="logout-wrapper">
-        <form class="logout-form" method="post">
+        <!-- <form class="logout-form" method="post">
           <button class="logout-btn" type="submit"><Icon class="logout-icon" icon="uil:signout" /></button>
-         </form>
+         </form> -->
+         <button on:click={logoutModal} class="logout-btn"><Icon class="logout-icon" icon="uil:signout" /></button>
       </div>
     </div>
   </div>

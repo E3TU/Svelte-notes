@@ -5,6 +5,7 @@
   import Sidebar from "../../components/Sidebar.svelte";
   import Createnotemodal from "../../components/Createnotemodal.svelte";
   import Editnotemodal from "../../components/Editnotemodal.svelte";
+  import LogoutconfirmModal from "../../components/LogoutconfirmModal.svelte";
 
   // Import page transitions compoonent
   import Pagetransitions from "../../components/Pagetransitions.svelte";
@@ -12,6 +13,7 @@
   // Import Store(s)
   import { createNoteMenu, isCreateNoteMenuOpen } from "../../stores/CreateNoteMenu";
   import { editNoteMenu, isEditNoteMenuOpen } from "../../stores/EditNoteMenu";
+  import { logoutConfirmMenu, isLogoutConfirmMenuOpen } from "../../stores/LogoutConfirm";
   
   export let data;
   const { user } = data;
@@ -28,9 +30,13 @@
     {#if $isEditNoteMenuOpen}
       <Editnotemodal />
     {/if}
+    <!--Show log out confirm modal when log out button is pressed-->
+    {#if $isLogoutConfirmMenuOpen}
+    <LogoutconfirmModal />
+    {/if}
     <div class="flex-items-left">
       <!--Pass username to sidebar component as prop-->
-      <Sidebar userName={username} />
+      <Sidebar userName={username} logoutModal={logoutConfirmMenu} />
     </div>
     <div class="flex-items-right">
       <Searchbar />
