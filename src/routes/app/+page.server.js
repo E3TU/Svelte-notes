@@ -1,13 +1,18 @@
 import { SESSION_COOKIE, createSessionClient } from "$lib/server/appwrite.js";
 import { redirect } from "@sveltejs/kit";
+import { Databases } from "appwrite";
+import { DATABASE_ID, COLLECTION_ID } from "$env/static/public";
+import { fetchDocuments } from "../../lib/server/database.js";
 
 //Function that checks if user is not logged in they get redirected to register page.
-export async function load({ locals }) {
+export async function load({ locals, event }) {
     if (!locals.user) redirect(302, "/register");
 
+    const notes = await fetchDocuments({ event });
 
     return{
         user: locals.user,
+        notes,
     };
 }
 
