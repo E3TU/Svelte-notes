@@ -1,21 +1,21 @@
 import { DATABASE_ID, COLLECTION_ID } from "$env/static/public";
 
-
-import { createSessionClient } from "$lib/appwrite";
+import { createAdminClient } from "../server/appwrite";
 import { Databases } from "appwrite";
 
-const databaseId = DATABASE_ID;
-const collectionId = COLLECTION_ID;
+const databaseId = import.meta.env.VITE_DATABASE_ID;
+const collectionId = import.meta.env.VITE_COLLECTION_ID;
 
-
-export async function get({ event }) {
-    const { account } = createSessionClient(event);
+export async function fetchDocuments({ event }) {
+    const { account } = createAdminClient(event);
     const databases = new Databases(account.client);
 
     try {
         const notes = await databases.listDocuments(databaseId, collectionId);
         console.log(notes);
+        return notes;
     } catch(error) {
         console.error(error);
+        return null;
     }
 }
