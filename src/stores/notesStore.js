@@ -6,23 +6,26 @@ export let notes = writable([]);
 export let note = writable({});
 export let title = writable("");
 export let content = writable("");
-export let newNote = {};
+export let newNote = writable({});
 
 // Function to add notes
 export function addNote(noteTitle, noteContent) {
   const newId = uuidv4();
 
+
+  newNote.set = {
+    id: newId,
+    title: noteTitle,
+    content: noteContent,
+    Created: Date.now(),
+  };
+
   notes.update((currentNotes) => {
-    newNote = {
-      id: newId,
-      title: noteTitle,
-      content: noteContent,
-      Created: Date.now(),
-    };
+    
     // console.log(newNote);
     // console.log(noteTitle);
     // console.log(noteContent);
-    return [...currentNotes, newNote];
+    return [...currentNotes, {id: newId, title: noteTitle, content: noteContent, Created: Date.now() }];
   });
 }
 
