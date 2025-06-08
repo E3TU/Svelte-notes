@@ -184,9 +184,17 @@
   }
   .title {
     padding: 0.5rem 1rem;
+    overflow: hidden;
+    word-wrap: break-word;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
   .content {
     padding: 0.25rem 1.1rem;
+    overflow: hidden;
+    word-wrap: break-word;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
   .control-buttons {
     display: flex;
