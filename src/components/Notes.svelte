@@ -12,6 +12,8 @@
   import { fade } from "svelte/transition";
   import { onMount } from "svelte";
 
+  import { fetchNotes } from "../stores/notesStore";
+
   onMount(() => {
     fetchNotes();
   })
@@ -28,14 +30,16 @@
     noteEditMenu(); // Open the edit modal
   }
 
-  export async function fetchNotes() {
-    const res = await fetch("/api/notes");
-    const data = await res.json();
-    const documents = data.documents;
+  // export async function fetchNotes() {
+  //   const res = await fetch("/api/notes");
+  //   const data = await res.json();
+  //   const documents = data.documents;
 
-    // return data.documents;
-    console.log(documents);
-  }
+  //   // return data.documents;
+  //   for (let i = 0; i < documents.length; i++) {
+  //         console.log(documents[i].title);      
+  //   }
+  // }
 
   export async function deleteNoteByID(id) {
     deleteNote(note.id);
