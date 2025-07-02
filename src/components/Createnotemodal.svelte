@@ -10,34 +10,17 @@
   import {addNote, title, content } from "../stores/notesStore.js";
 
   async function handleaddNote() {
-    const newTitle = $title;
-    const newContent = $content;
 
-    addNote(newTitle, newContent);
+    addNote($title, $content);
 
     title.set("");
     content.set("");
     createNoteMenu();
 
-    if (!newTitle || !newContent) {
-      alert("Title and content cannob be empty");
-      return;
-    }
-    try{
-      const res = await fetch("/api/notes", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ title: newTitle, content: newContent }),
-      }); 
-
-      const newNote = await res.json();
-
-      if (!res.ok) {
-        console.error("Save to appwrite failed:", newNote);
-      }
-    } catch (error) {
-      console.error("Error saving note:", error);
-    }
+    // if (!$title || !content) {
+    //   alert("Title and content cannob be empty");
+    //   return;
+    // }
   }
 </script>
 

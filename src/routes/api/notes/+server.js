@@ -1,10 +1,7 @@
-import { DATABASE_ID, COLLECTION_ID } from "$env/static/public";
-// import { newNote } from "../../stores/notesStore";
-import { get } from "svelte/store";
-import { json } from "@sveltejs/kit";
+import { error, json } from "@sveltejs/kit";
 
 import { createAdminClient } from "../../../lib/server/appwrite.js";
-import { Databases } from "appwrite";
+import { Databases, ID} from "appwrite";
 
 const databaseId = import.meta.env.VITE_DATABASE_ID;
 const collectionId = import.meta.env.VITE_COLLECTION_ID;
@@ -15,8 +12,10 @@ export async function GET({ locals }) {
 
     try {
         const fetchNotesResponse = await databases.listDocuments(databaseId, collectionId);
-        // console.log(fetchNotesResponse);
-        return json(fetchNotesResponse);
+        return new Response(JSON.stringify({ documents: fetchNotesResponse.documents }), {
+            status: 200,
+            headers: { "Content-Type": "application/json" },
+        });
     } catch(error) {
         console.error(error);
         return json({ error: "Failed to fetch notes"}, {status: 500});
@@ -31,19 +30,42 @@ export async function POST({ request, locals }) {
 
         // const noteData = get(newNote);
 
+        const noteId = ID.unique(); 
+
         const { title, content } = await request.json();
 
-        const saveNotesResponse = databases.createDocument(
+        const saveNotesResponse = await databases.createDocument(
             databaseId,
             collectionId,
-            "unique()",
+            noteId,
             // noteData,
             { title, content, Created: Date.now() }
         );
-        // console.log(saveNotesResponse);
         return json(saveNotesResponse);
     } catch(error) {
         console.error(error);
         return json({ error: "Failed to save note" }, { status: 500 })
     }
 }
+
+export async function DELETE({ request, locals }) {
+    const { account } = createAdminClient(locals);
+    const databases = new Databases(account.client);
+
+    const { id } = await request.json();
+
+    if (!id) {
+        return json({ error: "Missing note id"}, {status: 400 });
+    }
+
+    try{
+        const deleteNote = databases.deleteDocument(databaseId, collectionId, id);
+        console.log(id);
+        await deleteNote;
+        return ({ success: true });
+    } catch (error) {
+        console.error(error);
+        return json({ error: "Failed to delete note" }, {status: 500});
+    }
+}
+

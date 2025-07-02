@@ -1,9 +1,21 @@
 <script>
-  //Import font
+  // Import font
   import "@fontsource-variable/rubik";
 
-  //Import icons
+  // Import icons
   import Icon from "@iconify/svelte";
+
+  // Import notes store
+  import { notes, note, deleteNote } from "../stores/notesStore";
+
+  // Import fade transition
+  import { fade } from "svelte/transition";
+  import { onMount } from "svelte";
+
+  onMount(() => {
+    fetchNotes();
+  })
+
   // Dropdown Menu
   let isExpanded = false;
   function clickHandler(e) {
@@ -11,13 +23,42 @@
     isExpanded = !isExpanded;
   }
 
-  import { notes, note, deleteNote } from "../stores/notesStore";
-
-  import { fade } from "svelte/transition";
-
   function openEditModal(selectedNote) {
     note.set(selectedNote); // Set the selected note in the store
     noteEditMenu(); // Open the edit modal
+  }
+
+  export async function fetchNotes() {
+    const res = await fetch("/api/notes");
+    const data = await res.json();
+    const documents = data.documents;
+
+    // return data.documents;
+    console.log(documents);
+  }
+
+  export async function deleteNoteByID(id) {
+    deleteNote(note.id);
+
+    try {
+      const res = await fetch("/api/notes", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        notes.update((currentNotes) =>
+          currentNotes.filter((note) => note.id !== id)
+        );
+      } else {
+        console.error("Delete failed", data.error);
+      }
+    } catch (err) {
+      console.error("Network error:", err);
+    }
   }
 
   export let noteCreationMenu;
@@ -49,14 +90,14 @@
         <h1 class="title">{note.title}</h1>
         <p class="content">{note.content}</p>
         <div class="control-buttons">
-          <button on:click={() => openEditModal(note) } id="edit-note">
+          <button on:click={() => openEditModal(note)} id="edit-note">
             <Icon class="edit-btn" icon="material-symbols:edit-outline" />
           </button>
           <button
             id="delete-note"
             on:click={(e) => {
               e.stopPropagation();
-              deleteNote(note.id);
+              deleteNoteByID(note.id);
             }}
           >
             <Icon class="delete-btn" icon="ic:outline-delete" />
@@ -75,7 +116,7 @@
     border-radius: 12px;
     width: auto;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    font-family: 'Rubik Variable', sans-serif;
+    font-family: "Rubik Variable", sans-serif;
   }
   .action-bar {
     display: flex;
