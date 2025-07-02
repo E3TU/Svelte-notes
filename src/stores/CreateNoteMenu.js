@@ -1,3 +1,5 @@
+//Store to open and close note creation modal
+
 import { writable } from 'svelte/store';
 
 // Note creation menu is closed as default

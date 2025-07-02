@@ -1,3 +1,5 @@
+<!-- Notes app main page. This page can only be accessed by authenticated users -->
+
 <script>
   // Import components
   import Notes from "../../components/Notes.svelte";

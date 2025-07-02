@@ -1,3 +1,5 @@
+<!-- Logging in page -->
+
 <script>
     // Import page transitions compoonent
   import Pagetransitions from "../../components/Pagetransitions.svelte";

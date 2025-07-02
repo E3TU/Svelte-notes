@@ -1,3 +1,5 @@
+//Store to open and close note editing modal
+
 import { writable } from 'svelte/store';
 
 // Note editing menu is closed as default

@@ -1,3 +1,5 @@
+//Store to open and close log out confirm modal
+
 import { writable } from 'svelte/store';
 
 // Logout confirm menu is closed as default
