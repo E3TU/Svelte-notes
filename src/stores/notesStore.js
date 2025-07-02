@@ -1,5 +1,6 @@
 //Store that contains notes and keeps the notes up to date on UI side
 
+import { onMount } from "svelte";
 import { writable } from "svelte/store";
 import { v4 as uuidv4 } from "uuid";
 
@@ -9,6 +10,16 @@ export let note = writable({});
 export let title = writable("");
 export let content = writable("");
 export let newNote = writable({});
+
+
+export async function fetchNotes() {
+  const res = await fetch("api/notes");
+  const data = await res.json();
+  const documents = data.documents;
+
+  console.log(documents);
+}
+
 
 // Function to add notes
 export async function addNote(noteTitle, noteContent) {
