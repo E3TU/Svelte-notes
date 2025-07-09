@@ -11,15 +11,17 @@ export let title = writable("");
 export let content = writable("");
 export let newNote = writable({});
 
+export let documents = writable([]);
 
 export async function fetchNotes() {
   const res = await fetch("api/notes");
   const data = await res.json();
-  const documents = data.documents;
+  documents.set(data.documents);
 
-  console.log(documents);
+  documents.subscribe(value => {
+    console.log(value);
+  });
 }
-
 
 // Function to add notes
 export async function addNote(noteTitle, noteContent) {
@@ -59,6 +61,8 @@ export async function addNote(noteTitle, noteContent) {
         { title: noteTitle, content: noteContent, Created: Date.now() },
       ];
     });
+
+    await fetchNotes();
 
     if (!res.ok) {
       console.error("Save to appwrite failed:", data);
