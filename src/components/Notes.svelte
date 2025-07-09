@@ -12,11 +12,11 @@
   import { fade } from "svelte/transition";
   import { onMount } from "svelte";
 
-  import { fetchNotes } from "../stores/notesStore";
+  import { fetchNotes, documents } from "../stores/notesStore";
 
   onMount(() => {
     fetchNotes();
-  })
+  });
 
   // Dropdown Menu
   let isExpanded = false;
@@ -29,17 +29,6 @@
     note.set(selectedNote); // Set the selected note in the store
     noteEditMenu(); // Open the edit modal
   }
-
-  // export async function fetchNotes() {
-  //   const res = await fetch("/api/notes");
-  //   const data = await res.json();
-  //   const documents = data.documents;
-
-  //   // return data.documents;
-  //   for (let i = 0; i < documents.length; i++) {
-  //         console.log(documents[i].title);      
-  //   }
-  // }
 
   export async function deleteNoteByID(id) {
     deleteNote(note.id);
@@ -89,10 +78,10 @@
 
   <div class="notes-wrapper">
     <!--Notes go here grrrrr pau pau-->
-    {#each $notes as note (note.id)}
+    {#each $documents as document }
       <div class="note" transition:fade={{ delay: 250, duration: 300 }}>
-        <h1 class="title">{note.title}</h1>
-        <p class="content">{note.content}</p>
+        <h1 class="title">{document.title}</h1>
+        <p class="content">{document.content}</p>
         <div class="control-buttons">
           <button on:click={() => openEditModal(note)} id="edit-note">
             <Icon class="edit-btn" icon="material-symbols:edit-outline" />
