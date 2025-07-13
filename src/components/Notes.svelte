@@ -30,28 +30,8 @@
     noteEditMenu(); // Open the edit modal
   }
 
-  export async function deleteNoteByID(id) {
-    deleteNote(note.id);
-
-    try {
-      const res = await fetch("/api/notes", {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id }),
-      });
-
-      const data = await res.json();
-
-      if (res.ok) {
-        notes.update((currentNotes) =>
-          currentNotes.filter((note) => note.id !== id)
-        );
-      } else {
-        console.error("Delete failed", data.error);
-      }
-    } catch (err) {
-      console.error("Network error:", err);
-    }
+  export async function deleteNoteByID() {
+    deleteNote();
   }
 
   export let noteCreationMenu;
@@ -90,7 +70,7 @@
             id="delete-note"
             on:click={(e) => {
               e.stopPropagation();
-              deleteNoteByID(note.id);
+              deleteNoteByID();
             }}
           >
             <Icon class="delete-btn" icon="ic:outline-delete" />

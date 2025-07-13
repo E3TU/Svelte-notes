@@ -18,9 +18,9 @@ export async function fetchNotes() {
   const data = await res.json();
   documents.set(data.documents);
 
-  documents.subscribe(value => {
-    console.log(value);
-  });
+  // documents.subscribe(value => {
+  //   console.log(value);
+  // });
 }
 
 // Function to add notes
@@ -39,28 +39,11 @@ export async function addNote(noteTitle, noteContent) {
       }),
     });
 
-    const data = await res.json();
+    // const data = await res.json();
 
-    const noteId = data.$id;
+    // const noteId = data.$id;
 
-    console.log(data.$id);
-
-    newNote.set = {
-      id: noteId,
-      title: noteTitle,
-      content: noteContent,
-      Created: Date.now(),
-    };
-
-    notes.update((currentNotes) => {
-      // console.log(newNote);
-      // console.log(noteTitle);
-      // console.log(noteContent);
-      return [
-        ...currentNotes,
-        { title: noteTitle, content: noteContent, Created: Date.now() },
-      ];
-    });
+    // console.log(data.$id);
 
     await fetchNotes();
 
@@ -73,18 +56,28 @@ export async function addNote(noteTitle, noteContent) {
 }
 
 // Function to edit notes
-export function editNote(id, newTitle, newContent) {
-  notes.update((currentNotes) => {
-    return currentNotes.map((note) => {
-      if (note.id === id) {
-        return { ...note, title: newTitle, content: newContent };
-      }
-      return note;
-    });
-  });
-}
+// export function editNote(id, newTitle, newContent) {
+//   notes.update((currentNotes) => {
+//     return currentNotes.map((note) => {
+//       if (note.id === id) {
+//         return { ...note, title: newTitle, content: newContent };
+//       }
+//       return note;
+//     });
+//   });
+// }
 
 // Function to delete notes
-export function deleteNote(id) {
-  notes.update((currentNotes) => currentNotes.filter((note) => note.id !== id));
+export async function deleteNote() {
+  // notes.update((currentNotes) => currentNotes.filter((note) => note.id !== id));
+  const res = await fetch("/api/notes", {
+    method: "DELETE",
+    headers: { "Content-Type": "application/json" },
+    // body: JSON.stringify({ $id }),
+  });
+
+  const data = await res.json();
+  console.log(data);
+
+  fetchNotes();
 }
