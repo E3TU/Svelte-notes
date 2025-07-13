@@ -40,7 +40,7 @@
       width: 100vw;
       height: 100vh;
       z-index: 999;
-      backdrop-filter: blur(1px); /* Blurs the background */
+      backdrop-filter: blur(2px); /* Blurs the background */
       font-family: 'Rubik Variable', sans-serif;
     }
     .logout-confirm {
@@ -51,6 +51,7 @@
       height: 15rem;
       background-color: $bg-color;
       border-radius: 12px;
+      border: 3px solid $primary-color;
       box-shadow:
         rgba(0, 0, 0, 0.1) 0px 2px 4px 0px,
         rgba(0, 0, 0, 0.8) 0px 2px 16px 0px;
