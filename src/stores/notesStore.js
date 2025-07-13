@@ -1,8 +1,6 @@
 //Store that contains notes and keeps the notes up to date on UI side
 
-import { onMount } from "svelte";
 import { writable } from "svelte/store";
-import { v4 as uuidv4 } from "uuid";
 
 //Declare writable stores
 export let notes = writable([]);
