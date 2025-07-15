@@ -30,9 +30,9 @@
     noteEditMenu(); // Open the edit modal
   }
 
-  export async function deleteNoteByID() {
-    deleteNote();
-  }
+  // export async function deleteNoteByID() {
+  //   deleteNote(note.id);
+  // }
 
   export let noteCreationMenu;
   export let noteEditMenu;
@@ -70,7 +70,7 @@
             id="delete-note"
             on:click={(e) => {
               e.stopPropagation();
-              deleteNoteByID();
+              deleteNote(document.$id);
             }}
           >
             <Icon class="delete-btn" icon="ic:outline-delete" />

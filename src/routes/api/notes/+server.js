@@ -6,8 +6,6 @@ import { Databases, ID } from "appwrite";
 const databaseId = import.meta.env.VITE_DATABASE_ID;
 const collectionId = import.meta.env.VITE_COLLECTION_ID;
 
-const noteId = ID.unique();
-
 export async function GET({ locals }) {
   const { account } = createAdminClient(locals);
   const databases = new Databases(account.client);
@@ -17,6 +15,7 @@ export async function GET({ locals }) {
       databaseId,
       collectionId
     );
+
     return new Response(
       JSON.stringify({ documents: fetchNotesResponse.documents }),
       {
@@ -36,6 +35,7 @@ export async function POST({ request, locals }) {
 
   try {
     // const noteData = get(newNote);
+    const noteId = ID.unique();
 
     const { title, content } = await request.json();
 
@@ -58,9 +58,18 @@ export async function DELETE({ request, locals }) {
   const databases = new Databases(account.client);
 
   try {
-    const deleteNote = databases.deleteDocument(databaseId, collectionId, noteId);
+    const { id } = await request.json();
+
+    if (!id) {
+      return new Response(JSON.stringify({ error: "Missing document id" }), {
+        status: 400,
+        headers: { "Content-Type": "application/json" },
+      });
+    }
+
+    const deleteNote = databases.deleteDocument(databaseId, collectionId, id);
     await deleteNote;
-    return new json({success: "Note deleted successfully" }, { status: 200 });
+    return new json({ success: "Note deleted successfully" }, { status: 200 });
   } catch (error) {
     console.error(error);
     return json({ error: "Failed to delete note" }, { status: 500 });

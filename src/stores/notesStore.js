@@ -66,12 +66,14 @@ export async function addNote(noteTitle, noteContent) {
 // }
 
 // Function to delete notes
-export async function deleteNote() {
+export async function deleteNote(id) {
   // notes.update((currentNotes) => currentNotes.filter((note) => note.id !== id));
+  console.log("Deleteing note id with:", id);
+
   const res = await fetch("/api/notes", {
     method: "DELETE",
     headers: { "Content-Type": "application/json" },
-    // body: JSON.stringify({ $id }),
+    body: JSON.stringify({ id }),
   });
 
   const data = await res.json();
