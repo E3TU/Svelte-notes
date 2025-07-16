@@ -6,6 +6,7 @@
 
   export let userName;
   export let logoutModal;
+
 </script>
 
 <div class="sidebar-container">
@@ -25,7 +26,7 @@
       <Icon class="profile-icon" icon="pajamas:profile" />
       <p title={userName} class="username">{userName}</p>
       <div title="Settings" class="settings-wrapper">
-        <Icon class="settings-icon" icon="material-symbols:settings" />
+        <a href="/settings"><Icon class="settings-icon" icon="material-symbols:settings" /> </a>
       </div>
       <div title="Log out" class="logout-wrapper">
         <!-- <form class="logout-form" method="post">
