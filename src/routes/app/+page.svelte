@@ -7,7 +7,6 @@
   import Sidebar from "../../components/Sidebar.svelte";
   import Createnotemodal from "../../components/Createnotemodal.svelte";
   import Editnotemodal from "../../components/Editnotemodal.svelte";
-  import DeletenoteconfirmModal from "../../components/DeletenoteconfirmModal.svelte";
   import LogoutconfirmModal from "../../components/LogoutconfirmModal.svelte";
 
   // Import page transitions compoonent that is used to have animations between component transtitions
@@ -17,7 +16,6 @@
   import { createNoteMenu, isCreateNoteMenuOpen } from "../../stores/CreateNoteMenu";
   import { editNoteMenu, isEditNoteMenuOpen } from "../../stores/EditNoteMenu";
   import { logoutConfirmMenu, isLogoutConfirmMenuOpen } from "../../stores/LogoutConfirm";
-  import { deleteNoteMenu, isDeleteNoteMenuOpen } from "../../stores/DeleteNoteMenu";
   
   export let data;
   const { user } = data;
@@ -34,8 +32,6 @@
     {#if $isEditNoteMenuOpen}
       <Editnotemodal />
     {/if}
-    <!-- Show delete note confirmation modal when note deletion button is pressed -->
-     <DeletenoteconfirmModal />
     <!--Show log out confirm modal when log out button is pressed-->
     {#if $isLogoutConfirmMenuOpen}
     <LogoutconfirmModal />
