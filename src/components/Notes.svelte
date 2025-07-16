@@ -8,6 +8,7 @@
   // Import notes store
   import { notes, note, deleteNote } from "../stores/notesStore";
 
+
   // Import fade transition
   import { fade } from "svelte/transition";
   import { onMount } from "svelte";
@@ -31,7 +32,8 @@
   }
 
   // export async function deleteNoteByID() {
-  //   deleteNote(note.id);
+  //   // deleteNote(note.id);
+  //   deleteNoteMenu();
   // }
 
   export let noteCreationMenu;
