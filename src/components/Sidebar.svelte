@@ -6,34 +6,41 @@
 
   export let userName;
   export let logoutModal;
-
 </script>
 
 <div class="sidebar-container">
   <h2 class="navbar-heading">
     <Icon class="svelte-logo" icon="devicon:svelte" />velte Notes
   </h2>
+  <div class="top-wrapper">
+    <h4 class="categories-heading">Categories</h4>
+    <a title="Add Category" id="add-categorybtn"
+      ><Icon icon="tabler:plus" class="plus-icon" /></a
+    >
+  </div>
   <div class="categories-container">
-    <div class="top-wrapper">
-      <h4 class="categories-heading">Categories</h4>
-      <a title="Add Category" id="add-categorybtn"
-        ><Icon icon="tabler:plus" class="plus-icon" /></a
-      >
+    <ul>
+      <li>Test category</li>
+      <li>Business</li>
+    </ul>
+  </div>
+  <div class="profile-wrapper">
+    <!-- <Icon class="profile-icon" icon="gg:profile" /> -->
+    <!-- <Icon class="profile-icon" icon="iconamoon:profile-circle-fill" /> -->
+    <Icon class="profile-icon" icon="pajamas:profile" />
+    <p title={userName} class="username">{userName}</p>
+    <div title="Settings" class="settings-wrapper">
+      <a href="/settings"
+        ><Icon class="settings-icon" icon="material-symbols:settings" />
+      </a>
     </div>
-    <div class="profile-wrapper">
-      <!-- <Icon class="profile-icon" icon="gg:profile" /> -->
-      <!-- <Icon class="profile-icon" icon="iconamoon:profile-circle-fill" /> -->
-      <Icon class="profile-icon" icon="pajamas:profile" />
-      <p title={userName} class="username">{userName}</p>
-      <div title="Settings" class="settings-wrapper">
-        <a href="/settings"><Icon class="settings-icon" icon="material-symbols:settings" /> </a>
-      </div>
-      <div title="Log out" class="logout-wrapper">
-        <!-- <form class="logout-form" method="post">
+    <div title="Log out" class="logout-wrapper">
+      <!-- <form class="logout-form" method="post">
           <button class="logout-btn" type="submit"><Icon class="logout-icon" icon="uil:signout" /></button>
          </form> -->
-         <button on:click={logoutModal} class="logout-btn"><Icon class="logout-icon" icon="uil:signout" /></button>
-      </div>
+      <button on:click={logoutModal} class="logout-btn"
+        ><Icon class="logout-icon" icon="uil:signout" /></button
+      >
     </div>
   </div>
 </div>
@@ -48,10 +55,10 @@
     margin: 1rem;
     border-radius: 12px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    font-family: 'Rubik Variable', sans-serif;
+    font-family: "Rubik Variable", sans-serif;
   }
   .navbar-heading {
-    // margin: 1rem;
+    margin: 2rem;
     margin-top: 1rem;
     margin-left: 1rem;
     color: $white;
@@ -62,21 +69,15 @@
     vertical-align: bottom;
     font-size: 2rem;
   }
-  .categories-container {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    padding-top: 2rem;
-  }
   .top-wrapper {
     display: flex;
-    flex: 1;
+    flex-direction: row;
     width: 100%;
-    height: 2rem;
+    height: auto;
+    padding-top: 1rem;
   }
   .categories-heading {
     color: $white;
-    // margin-top: 2rem;
     margin-left: 1rem;
     letter-spacing: 0.05rem;
   }
@@ -96,6 +97,21 @@
     border: none;
     width: min-content;
     margin-left: 9.5rem;
+  }
+  .categories-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding-top: 2rem;
+    ul{
+      color: $light-gray;
+      margin-left: 1.1rem;
+    }
+    li{
+      list-style: none;
+      margin-top: 1rem;
+      cursor: pointer;
+    }
   }
   .profile-wrapper {
     display: flex;
@@ -141,7 +157,7 @@
     rotate: 180deg;
     cursor: pointer;
   }
-  .logout-btn{
+  .logout-btn {
     background-color: transparent;
     outline: none;
     border: none;
