@@ -7,18 +7,16 @@
 
   import { editNoteMenu } from "../stores/EditNoteMenu.js";
 
-  import {notes, note, editNote, title, content } from "../stores/notesStore.js";
+  import {notes, title, content } from "../stores/notesStore.js";
 
-  let updatedTitle = $note.title;
-  let updatedContent = $note.content;
 
   function handleEditNote() {
     // Call function to update notesStore with new title and content
-    editNote($note.id, updatedTitle, updatedContent);
     // Close the note editing menu
     editNoteMenu();
-  }
+      console.log(updatedTitle);
 
+  }
 </script>
 
 <div
@@ -35,11 +33,11 @@
     <div class="bottom-section">
       <div class="note-title-wrapper">
         <label for="note-title">Note Title</label>
-        <input bind:value={updatedTitle} id="note-title" type="text" />
+        <input id="note-title" type="text" />
       </div>
       <div class="note-content-wrapper">
         <label for="note-content">Note Content</label>
-        <textarea bind:value={updatedContent} id="note-content" rows="10"></textarea>
+        <textarea id="note-content" rows="10"></textarea>
       </div>
       <button on:click|preventDefault={handleEditNote} id="save-note-btn"
         >Save Note</button

@@ -16,11 +16,6 @@
     title.set("");
     content.set("");
     createNoteMenu();
-
-    // if (!$title || !content) {
-    //   alert("Title and content cannob be empty");
-    //   return;
-    // }
   }
 </script>
 

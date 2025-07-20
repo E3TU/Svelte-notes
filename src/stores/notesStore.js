@@ -4,10 +4,8 @@ import { writable } from "svelte/store";
 
 //Declare writable stores
 export let notes = writable([]);
-export let note = writable({});
 export let title = writable("");
 export let content = writable("");
-export let newNote = writable({});
 
 export let documents = writable([]);
 
@@ -54,16 +52,16 @@ export async function addNote(noteTitle, noteContent) {
 }
 
 // Function to edit notes
-// export function editNote(id, newTitle, newContent) {
-//   notes.update((currentNotes) => {
-//     return currentNotes.map((note) => {
-//       if (note.id === id) {
-//         return { ...note, title: newTitle, content: newContent };
-//       }
-//       return note;
-//     });
-//   });
-// }
+export async function editNote(id) {
+  const res = await fetch("/api/notes", {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ id }),
+  });
+
+  const data = await res.json();
+
+}
 
 // Function to delete notes
 export async function deleteNote(id) {

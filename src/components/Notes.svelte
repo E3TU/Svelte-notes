@@ -6,7 +6,7 @@
   import Icon from "@iconify/svelte";
 
   // Import notes store
-  import { notes, note, deleteNote } from "../stores/notesStore";
+  import { deleteNote } from "../stores/notesStore";
 
 
   // Import fade transition
