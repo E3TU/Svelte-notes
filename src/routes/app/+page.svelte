@@ -12,10 +12,9 @@
   // Import page transitions compoonent that is used to have animations between component transtitions
   import Pagetransitions from "../../components/Pagetransitions.svelte";
 
-  // Import Store(s)
-  import { createNoteMenu, isCreateNoteMenuOpen } from "../../stores/CreateNoteMenu";
-  import { editNoteMenu, isEditNoteMenuOpen } from "../../stores/EditNoteMenu";
-  import { logoutConfirmMenu, isLogoutConfirmMenuOpen } from "../../stores/LogoutConfirm";
+  import { isCreateNoteMenuOpen } from "../../stores/CreateNoteMenu";
+  import { isEditNoteMenuOpen } from "../../stores/EditNoteMenu";
+  import { isLogoutConfirmMenuOpen } from "../../stores/LogoutConfirm";
   
   export let data;
   const { user } = data;
@@ -38,12 +37,11 @@
     {/if}
     <div class="flex-items-left">
       <!--Pass username to sidebar component as prop-->
-      <Sidebar userName={username} logoutModal={logoutConfirmMenu} />
+      <Sidebar userName={username} />
     </div>
     <div class="flex-items-right">
       <Searchbar />
-      <!--Pass notecreationmenu and noteeditmenu as props to notes component-->
-      <Notes noteCreationMenu={createNoteMenu} noteEditMenu={editNoteMenu} />
+      <Notes />
     </div>
   </div>
 </Pagetransitions>
