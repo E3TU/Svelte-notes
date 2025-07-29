@@ -5,6 +5,7 @@
   import Notes from "../../components/Notes.svelte";
   import Searchbar from "../../components/Searchbar.svelte";
   import Sidebar from "../../components/Sidebar.svelte";
+  import CreateCategorymodal from "../../components/CreateCategorymodal.svelte";
   import Createnotemodal from "../../components/Createnotemodal.svelte";
   import Editnotemodal from "../../components/Editnotemodal.svelte";
   import LogoutconfirmModal from "../../components/LogoutconfirmModal.svelte";
@@ -12,10 +13,11 @@
   // Import page transitions compoonent that is used to have animations between component transtitions
   import Pagetransitions from "../../components/Pagetransitions.svelte";
 
+  import { isCreateCategoryMenuOpen } from "../../stores/CreateCategoryMenu"; 
   import { isCreateNoteMenuOpen } from "../../stores/CreateNoteMenu";
   import { isEditNoteMenuOpen } from "../../stores/EditNoteMenu";
   import { isLogoutConfirmMenuOpen } from "../../stores/LogoutConfirm";
-  
+
   export let data;
   const { user } = data;
   const username = user.name;
@@ -23,6 +25,9 @@
 
 <Pagetransitions>
   <div class="flex-container">
+    {#if $isCreateCategoryMenuOpen}
+      <CreateCategorymodal />
+    {/if}
     <!--Show note creation modal when new note button is pressed-->
     {#if $isCreateNoteMenuOpen}
       <Createnotemodal />
@@ -33,7 +38,7 @@
     {/if}
     <!--Show log out confirm modal when log out button is pressed-->
     {#if $isLogoutConfirmMenuOpen}
-    <LogoutconfirmModal />
+      <LogoutconfirmModal />
     {/if}
     <div class="flex-items-left">
       <!--Pass username to sidebar component as prop-->
