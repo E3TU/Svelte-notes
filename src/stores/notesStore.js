@@ -35,12 +35,6 @@ export async function addNote(noteTitle, noteContent) {
       }),
     });
 
-    // const data = await res.json();
-
-    // const noteId = data.$id;
-
-    // console.log(data.$id);
-
     await fetchNotes();
 
     if (!res.ok) {
@@ -52,15 +46,18 @@ export async function addNote(noteTitle, noteContent) {
 }
 
 // Function to edit notes
-export async function editNote(id) {
+export async function editNote(noteTitle, noteContent, id) {
   const res = await fetch("/api/notes", {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ id }),
+    body: JSON.stringify({ title: noteTitle, content: noteContent, id }),
   });
 
   const data = await res.json();
 
+  console.log(data);
+
+  await fetchNotes();
 }
 
 // Function to delete notes
