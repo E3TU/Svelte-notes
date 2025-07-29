@@ -5,17 +5,20 @@
   import Icon from "@iconify/svelte";
   import { fade } from "svelte/transition";
 
-  import { editNoteMenu } from "../stores/EditNoteMenu.js";
+  import { editNoteMenu, selectedNoteId } from "../stores/EditNoteMenu.js";
 
-  import {notes, title, content } from "../stores/notesStore.js";
-
+  import { editNote, title, content } from "../stores/notesStore.js";
+  import { get } from "svelte/store";
 
   function handleEditNote() {
     // Call function to update notesStore with new title and content
     // Close the note editing menu
-    editNoteMenu();
-      console.log(updatedTitle);
+    const id = get(selectedNoteId);
 
+    editNote($title, $content, id);
+    title.set("");
+    content.set("");
+    editNoteMenu();
   }
 </script>
 
@@ -33,11 +36,11 @@
     <div class="bottom-section">
       <div class="note-title-wrapper">
         <label for="note-title">Note Title</label>
-        <input id="note-title" type="text" />
+        <input bind:value={$title} id="note-title" type="text" />
       </div>
       <div class="note-content-wrapper">
         <label for="note-content">Note Content</label>
-        <textarea id="note-content" rows="10"></textarea>
+        <textarea bind:value={$content} id="note-content" rows="10"></textarea>
       </div>
       <button on:click|preventDefault={handleEditNote} id="save-note-btn"
         >Save Note</button
