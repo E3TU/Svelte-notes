@@ -6,14 +6,13 @@
   import Icon from "@iconify/svelte";
 
   // Import notes store
-  import { deleteNote } from "../stores/notesStore";
+  import { deleteNote, editNote, fetchNotes, documents } from "../stores/notesStore";
 
 
   // Import fade transition
   import { fade } from "svelte/transition";
   import { onMount } from "svelte";
 
-  import { fetchNotes, documents } from "../stores/notesStore";
 
   onMount(() => {
     fetchNotes();
@@ -26,23 +25,18 @@
     isExpanded = !isExpanded;
   }
 
-  function openEditModal(selectedNote) {
-    note.set(selectedNote); // Set the selected note in the store
-    noteEditMenu(); // Open the edit modal
-  }
-
   // export async function deleteNoteByID() {
   //   // deleteNote(note.id);
   //   deleteNoteMenu();
   // }
 
-  export let noteCreationMenu;
-  export let noteEditMenu;
+  import { createNoteMenu } from "../stores/CreateNoteMenu";
+  import { editNoteMenu } from "../stores/EditNoteMenu";
 </script>
 
 <div class="notes-container">
   <div class="action-bar">
-    <button class="createnote-btn" on:click={noteCreationMenu}
+    <button class="createnote-btn" on:click={createNoteMenu}
       ><Icon icon="ph:plus-bold" class="plussign-icon" />New Note</button
     >
     <nav class="dropdown-menu">
@@ -65,7 +59,7 @@
         <h1 class="title">{document.title}</h1>
         <p class="content">{document.content}</p>
         <div class="control-buttons">
-          <button on:click={() => openEditModal(note)} id="edit-note">
+          <button on:click={(e) => { e.stopPropagation(); editNoteMenu(document.$id); }} id="edit-note">
             <Icon class="edit-btn" icon="material-symbols:edit-outline" />
           </button>
           <button

@@ -4,8 +4,9 @@
   //Import icons
   import Icon from "@iconify/svelte";
 
+  import { logoutConfirmMenu } from "../stores/LogoutConfirm";
+
   export let userName;
-  export let logoutModal;
 </script>
 
 <div class="sidebar-container">
@@ -38,7 +39,7 @@
       <!-- <form class="logout-form" method="post">
           <button class="logout-btn" type="submit"><Icon class="logout-icon" icon="uil:signout" /></button>
          </form> -->
-      <button on:click={logoutModal} class="logout-btn"
+      <button on:click={logoutConfirmMenu} class="logout-btn"
         ><Icon class="logout-icon" icon="uil:signout" /></button
       >
     </div>
@@ -103,11 +104,11 @@
     flex-direction: column;
     flex: 1;
     padding-top: 2rem;
-    ul{
+    ul {
       color: $light-gray;
       margin-left: 1.1rem;
     }
-    li{
+    li {
       list-style: none;
       margin-top: 1rem;
       cursor: pointer;
