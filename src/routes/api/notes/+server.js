@@ -2,7 +2,7 @@ import { error, json } from "@sveltejs/kit";
 
 import { createAdminClient } from "../../../lib/server/appwrite.js";
 import { Databases, ID } from "appwrite";
-import { content, title } from "../../../stores/notesStore.js";
+// import { content, title } from "../../../stores/notesStore.js";
 
 const databaseId = import.meta.env.VITE_DATABASE_ID;
 const collectionId = import.meta.env.VITE_COLLECTION_ID;
@@ -65,7 +65,7 @@ export async function PATCH({ request, locals }) {
   const dataToUpdate = {};
   if (updatedFields.title?.trim()) dataToUpdate.title = updatedFields.title;
   if (updatedFields.content.trim()) dataToUpdate.content = updatedFields.content;
-  
+
   try {
     const editNote = await databases.updateDocument(
       databaseId,
