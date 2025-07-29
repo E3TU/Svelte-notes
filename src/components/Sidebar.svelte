@@ -5,8 +5,10 @@
   import Icon from "@iconify/svelte";
 
   import { logoutConfirmMenu } from "../stores/LogoutConfirm";
+  import { createCategoryMenu } from "../stores/CreateCategoryMenu";
 
   export let userName;
+
 </script>
 
 <div class="sidebar-container">
@@ -15,8 +17,8 @@
   </h2>
   <div class="top-wrapper">
     <h4 class="categories-heading">Categories</h4>
-    <a title="Add Category" id="add-categorybtn"
-      ><Icon icon="tabler:plus" class="plus-icon" /></a
+    <button on:click={createCategoryMenu} title="Add Category" id="add-categorybtn"
+      ><Icon icon="tabler:plus" class="plus-icon" /></button
     >
   </div>
   <div class="categories-container">
