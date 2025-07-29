@@ -47,10 +47,23 @@ export async function addNote(noteTitle, noteContent) {
 
 // Function to edit notes
 export async function editNote(noteTitle, noteContent, id) {
+  // Construct an object with only non-empty title and content fields for update
+  const updatedFields = {};
+  if (noteTitle?.trim()) updatedFields.title = noteTitle;
+  if (noteContent?.trim()) updatedFields.content = noteContent;
+
+  // Exit if there is nothing to update
+  if (Object.keys(updatedFields).length === 0) {
+    console.log("Nothing to update");
+    return;
+  }
+  
+  updatedFields.id = id;
+
   const res = await fetch("/api/notes", {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ title: noteTitle, content: noteContent, id }),
+    body: JSON.stringify({ updatedFields }),
   });
 
   const data = await res.json();

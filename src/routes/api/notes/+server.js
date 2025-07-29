@@ -58,17 +58,20 @@ export async function PATCH({ request, locals }) {
   const { account } = createAdminClient(locals);
   const databases = new Databases(account.client);
 
-
   const body = await request.json();
-  const { title, content, id } = body;
-  console.log(body);
+  const { updatedFields } = body;
 
+  // Build object that contains note title and note content but leave out empty values
+  const dataToUpdate = {};
+  if (updatedFields.title?.trim()) dataToUpdate.title = updatedFields.title;
+  if (updatedFields.content.trim()) dataToUpdate.content = updatedFields.content;
+  
   try {
     const editNote = await databases.updateDocument(
       databaseId,
       collectionId,
-      id,
-      { title, content, }
+      updatedFields.id,
+      dataToUpdate
     );
     return json(editNote);
   } catch (error) {
