@@ -2,6 +2,7 @@ import { error, json } from "@sveltejs/kit";
 
 import { createAdminClient } from "../../../lib/server/appwrite.js";
 import { Databases, ID } from "appwrite";
+import { content, title } from "../../../stores/notesStore.js";
 
 const databaseId = import.meta.env.VITE_DATABASE_ID;
 const collectionId = import.meta.env.VITE_COLLECTION_ID;
@@ -50,6 +51,29 @@ export async function POST({ request, locals }) {
   } catch (error) {
     console.error(error);
     return json({ error: "Failed to save note" }, { status: 500 });
+  }
+}
+
+export async function PATCH({ request, locals }) {
+  const { account } = createAdminClient(locals);
+  const databases = new Databases(account.client);
+
+
+  const body = await request.json();
+  const { title, content, id } = body;
+  console.log(body);
+
+  try {
+    const editNote = await databases.updateDocument(
+      databaseId,
+      collectionId,
+      id,
+      { title, content, }
+    );
+    return json(editNote);
+  } catch (error) {
+    console.error(error);
+    return json({ error: "Failed to edit note" }, { status: 500 });
   }
 }
 
