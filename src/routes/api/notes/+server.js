@@ -17,13 +17,8 @@ export async function GET({ locals }) {
       collectionId
     );
 
-    return new Response(
-      JSON.stringify({ documents: fetchNotesResponse.documents }),
-      {
-        status: 200,
-        headers: { "Content-Type": "application/json" },
-      }
-    );
+    return json({ documents: fetchNotesResponse.documents })
+
   } catch (error) {
     console.error(error);
     return json({ error: "Failed to fetch notes" }, { status: 500 });
