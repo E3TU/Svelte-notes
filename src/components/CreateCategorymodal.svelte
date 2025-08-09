@@ -17,6 +17,10 @@
     });
 
     const data = await res.json();
+
+    console.log(data);
+
+    createCategoryMenu();
   }
 </script>
 
@@ -31,7 +35,7 @@
     <div class="bottom-section">
       <input bind:value={categoryName} id="category-name" />
       <div class="button-container">
-        <button class="logout-btn" type="submit" id="confirm-button"
+        <button on:click={createCategory} class="logout-btn" id="confirm-button"
           >Create</button
         >
         <button on:click|preventDefault={createCategoryMenu} id="cancel-button"
@@ -92,7 +96,7 @@
     border: 2px solid $primary-color;
     padding-left: 0.5rem;
     font-size: 1.25rem;
-    background-color: $lighter-gray;
+    background-color: $gray;
     color: $white;
   }
   .button-container {
