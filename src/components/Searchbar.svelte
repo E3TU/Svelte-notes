@@ -25,7 +25,7 @@
     font-family: 'Rubik Variable', sans-serif;
   }
   input {
-    background-color: $gray;
+    background-color: $dark-gray;
     border: 2px solid transparent;
     border-radius: 12px;
     width: 100%;

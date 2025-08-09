@@ -80,7 +80,7 @@
 <style lang="scss">
   .notes-container {
     margin: 1rem;
-    background-color: $gray;
+    background-color: $dark-gray;
     height: 100%;
     border-radius: 12px;
     width: auto;
@@ -185,7 +185,7 @@
     scrollbar-width: thin;
   }
   .note::-webkit-scrollbar-thumb {
-    background-color: $lighter-gray;
+    background-color: $gray;
     border-radius: 8px;
   }
   .note::-webkit-scrollbar-track {

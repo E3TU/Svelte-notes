@@ -23,8 +23,10 @@
   </div>
   <div class="categories-container">
     <ul>
-      <li>Test category</li>
-      <li>Business</li>
+      <!-- {#each categories as category} -->
+        <li>Test category</li>
+        <li>Business</li>
+      <!-- {/each} -->
     </ul>
   </div>
   <div class="profile-wrapper">
@@ -54,7 +56,7 @@
     flex-direction: column;
     height: 100vh;
     width: 20rem;
-    background-color: $gray;
+    background-color: $dark-gray;
     margin: 1rem;
     border-radius: 12px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;

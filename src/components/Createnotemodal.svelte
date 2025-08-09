@@ -154,7 +154,7 @@
     width: 10px;
   }
   #note-content::-webkit-scrollbar-track {
-    background-color: $gray;
+    background-color: $dark-gray;
     border-radius: 8px;
   }
   #note-content::-webkit-scrollbar-thumb {
