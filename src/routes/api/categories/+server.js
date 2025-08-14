@@ -19,8 +19,6 @@ export async function GET({ locals }) {
       categoryNames.push(categories[i].name);
     }
 
-    console.log(categoryNames);
-
     return json({ collections: categoryNames });
   } catch (error) {
     console.error(error);

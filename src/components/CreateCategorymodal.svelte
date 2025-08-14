@@ -20,8 +20,6 @@
 
     const data = await res.json();
 
-    console.log(data);
-
     createCategoryMenu();
 
     fetchCategories();
