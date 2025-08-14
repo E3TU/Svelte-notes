@@ -16,6 +16,7 @@
     fetchCategories();
   });
 
+  let selectedCategory = null;
 </script>
 
 <div class="sidebar-container">
@@ -24,14 +25,21 @@
   </h2>
   <div class="top-wrapper">
     <h4 class="categories-heading">Categories</h4>
-    <button on:click={createCategoryMenu} title="Add Category" id="add-categorybtn"
-      ><Icon icon="tabler:plus" class="plus-icon" /></button
+    <button
+      on:click={createCategoryMenu}
+      title="Add Category"
+      id="add-categorybtn"><Icon icon="tabler:plus" class="plus-icon" /></button
     >
   </div>
   <div class="categories-container">
     <ul>
       {#each $categories as category}
-        <li>{category}</li>
+        <li
+          class:selected={selectedCategory === category}
+          on:click={() => (selectedCategory = category)}
+        >
+          {category}
+        </li>
       {/each}
     </ul>
   </div>
@@ -116,13 +124,20 @@
     padding-top: 2rem;
     ul {
       color: $light-gray;
-      margin-left: 1.1rem;
     }
     li {
       list-style: none;
       margin-top: 1rem;
       cursor: pointer;
+      padding: 1rem 1rem;
+      border-radius: 5px;
+      font-size: 1rem;
     }
+  }
+  .selected {
+    background-color: $bg-color;
+    color: $white;
+    transition: 0.5s;
   }
   .profile-wrapper {
     display: flex;
