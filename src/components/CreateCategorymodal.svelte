@@ -7,6 +7,8 @@
 
   import { createCategoryMenu } from "../stores/CreateCategoryMenu";
 
+  import { fetchCategories } from "../stores/categoriesStore";
+
   let categoryName;
 
   export async function createCategory() {
@@ -21,6 +23,8 @@
     console.log(data);
 
     createCategoryMenu();
+
+    fetchCategories();
   }
 </script>
 
@@ -95,7 +99,7 @@
     outline: none;
     border: 2px solid $primary-color;
     padding-left: 0.5rem;
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     background-color: $gray;
     color: $white;
   }
