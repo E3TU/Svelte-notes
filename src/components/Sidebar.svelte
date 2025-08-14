@@ -4,10 +4,17 @@
   //Import icons
   import Icon from "@iconify/svelte";
 
+  import { fetchCategories, categories } from "../stores/categoriesStore";
+
   import { logoutConfirmMenu } from "../stores/LogoutConfirm";
   import { createCategoryMenu } from "../stores/CreateCategoryMenu";
+  import { onMount } from "svelte";
 
   export let userName;
+
+  onMount(() => {
+    fetchCategories();
+  });
 
 </script>
 
@@ -23,10 +30,9 @@
   </div>
   <div class="categories-container">
     <ul>
-      <!-- {#each categories as category} -->
-        <li>Test category</li>
-        <li>Business</li>
-      <!-- {/each} -->
+      {#each $categories as category}
+        <li>{category}</li>
+      {/each}
     </ul>
   </div>
   <div class="profile-wrapper">
