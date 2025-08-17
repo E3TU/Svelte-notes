@@ -9,7 +9,7 @@ export async function fetchCategories() {
 
   categories.set(data.collections);
 
-  categories.subscribe((value) => {
-    console.log(value);
-  });
+  // categories.subscribe((value) => {
+  //   console.log(value);
+  // });
 }
