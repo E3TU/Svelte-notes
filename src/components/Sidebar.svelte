@@ -33,9 +33,10 @@
   </div>
   <div class="categories-container">
     <ul>
-      {#each $categories as category}
+      {#each $categories as category, index}
         <li
           class:selected={selectedCategory === category}
+          class:first={selectedCategory === null && index === 0}
           on:click={() => (selectedCategory = category)}
         >
           {category}
@@ -133,6 +134,11 @@
       border-radius: 5px;
       font-size: 1rem;
     }
+  }
+  .first {
+    background-color: $bg-color;
+    color: $white;
+    transition: 0.5s;
   }
   .selected {
     background-color: $bg-color;
