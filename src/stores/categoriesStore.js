@@ -7,15 +7,21 @@ export async function fetchCategoryNames() {
   const res = await fetch("api/categories");
   const data = await res.json();
 
-  categories.set(data.collections);  
-  categoryNames.set(data.collectionNames);
+  for (let i = 0; i < data.collections.length; i++) {
+    // console.log(data.collections[i].name);
+    categoryNames.update((names) => {
+      names.push(data.collections[i].name);
+      return names;
+    });
+  }
 
-  categoryNames.subscribe((value) => {
-    console.log(value);
-  });
+  categories.set(data.collections);
 
-  categories.subscribe((value ) => {
-    console.log(value);
-  });
+  // categoryNames.subscribe((value) => {
+  //   console.log(value);
+  // });
 
+  // categories.subscribe((value) => {
+  //   console.log(value);
+  // });
 }
