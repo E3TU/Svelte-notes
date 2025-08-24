@@ -19,7 +19,9 @@ export async function GET({ locals }) {
       categoryNames.push(categories[i].name);
     }
 
-    return json({ collections: categoryNames });
+    console.log(categories);
+
+    return json({ collectionNames: categoryNames, collections: categories  });
   } catch (error) {
     console.error(error);
     return json({ error: "Failed to fetch categories" }, { status: 500 });
