@@ -13,15 +13,8 @@ export async function GET({ locals }) {
     const fetchCategoriesResponse = await databases.listCollections(databaseId);
 
     let categories = fetchCategoriesResponse.collections;
-    let categoryNames = [];
 
-    for (let i = 0; i < categories.length; i++) {
-      categoryNames.push(categories[i].name);
-    }
-
-    console.log(categories);
-
-    return json({ collectionNames: categoryNames, collections: categories  });
+    return json({ collections: categories  });
   } catch (error) {
     console.error(error);
     return json({ error: "Failed to fetch categories" }, { status: 500 });
