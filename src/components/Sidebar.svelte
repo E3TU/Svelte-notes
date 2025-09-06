@@ -4,7 +4,7 @@
   //Import icons
   import Icon from "@iconify/svelte";
 
-  import { fetchCategoryNames, categoryNames, categories } from "../stores/categoriesStore";
+  import { fetchCategoryNames, categoryNames, categories, firstCategory } from "../stores/categoriesStore";
 
   import { logoutConfirmMenu } from "../stores/LogoutConfirm";
   import { createCategoryMenu } from "../stores/CreateCategoryMenu";
@@ -12,11 +12,18 @@
 
   export let userName;
 
+  let index = 0;
+
   onMount(() => {
     fetchCategoryNames();
+    // if (categories.length = 0) {
+    //   firstCategory.set(0);
+    //   console.log("Kurwa");
+    // }
   });
 
   let selectedCategory = null;
+
 </script>
 
 <div class="sidebar-container">
@@ -33,11 +40,11 @@
   </div>
   <div class="categories-container">
     <ul>
-      {#each $categories as category, index}
+      {#each $categories as category, i}
         <li
-          class:selected={selectedCategory === category}
-          class:first={selectedCategory === null && index === 0}
-          on:click={() => (selectedCategory = category, console.log(category.$id)) }
+          class:selected={selectedCategory === category, firstCategory.set(index)}
+          class:first={selectedCategory === null && i === 0}
+          on:click={() => (selectedCategory = category, console.log(category.$id))}
         >
           {category.name}
         </li>
