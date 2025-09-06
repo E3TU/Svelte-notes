@@ -3,6 +3,8 @@ import { writable } from "svelte/store";
 export let categories = writable([]);
 export let categoryNames = writable([]);
 
+export let firstCategory = writable(null);
+
 export async function fetchCategoryNames() {
   const res = await fetch("api/categories");
   const data = await res.json();
@@ -16,6 +18,10 @@ export async function fetchCategoryNames() {
   }
 
   categories.set(data.collections);
+
+  // firstCategory.subscribe((value) => {
+  //   console.log(value);
+  // });
 
   // categoryNames.subscribe((value) => {
   //   console.log(value);
