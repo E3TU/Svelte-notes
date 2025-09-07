@@ -9,6 +9,8 @@ export async function fetchCategoryNames() {
   const res = await fetch("api/categories");
   const data = await res.json();
 
+  categories.set(data.collections);
+
   for (let i = 0; i < data.collections.length; i++) {
     // console.log(data.collections[i].name);
     categoryNames.update((names) => {
@@ -17,7 +19,10 @@ export async function fetchCategoryNames() {
     });
   }
 
-  categories.set(data.collections);
+
+  // categories.subscribe((value) => {
+  //   console.log(value[0]);
+  // });
 
   // firstCategory.subscribe((value) => {
   //   console.log(value);
@@ -30,4 +35,13 @@ export async function fetchCategoryNames() {
   // categories.subscribe((value) => {
   //   console.log(value);
   // });
+}
+
+export async function fetchFirstCategory() {
+  const res = await fetch("api/categories");
+  const data = await res.json();
+
+  categories.subscribe((value) => {
+    console.log(value);
+  });
 }
