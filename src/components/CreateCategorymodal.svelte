@@ -7,7 +7,7 @@
 
   import { createCategoryMenu } from "../stores/CreateCategoryMenu";
 
-  import { fetchCategoryNames } from "../stores/categoriesStore";
+  import { fetchCategories } from "../stores/categoriesStore";
 
   let categoryName;
 
@@ -22,7 +22,7 @@
 
     createCategoryMenu();
 
-    fetchCategoryNames();
+    fetchCategories();
   }
 </script>
 
