@@ -4,7 +4,7 @@
   //Import icons
   import Icon from "@iconify/svelte";
 
-  import { fetchCategoryNames, categoryNames, categories, firstCategory, fetchFirstCategory } from "../stores/categoriesStore";
+  import { fetchCategories, categories } from "../stores/categoriesStore";
 
   import { logoutConfirmMenu } from "../stores/LogoutConfirm";
   import { createCategoryMenu } from "../stores/CreateCategoryMenu";
@@ -13,8 +13,7 @@
   export let userName;
 
   onMount(() => {
-    fetchCategoryNames();
-    fetchFirstCategory();
+    fetchCategories();
   });
 
   let selectedCategory = null;
