@@ -4,7 +4,7 @@
   //Import icons
   import Icon from "@iconify/svelte";
 
-  import { fetchCategories, categories } from "../stores/categoriesStore";
+  import { fetchCategories, categories, updateCategory } from "../stores/categoriesStore";
 
   import { logoutConfirmMenu } from "../stores/LogoutConfirm";
   import { createCategoryMenu } from "../stores/CreateCategoryMenu";
@@ -38,7 +38,7 @@
         <li
           class:selected={selectedCategory === category}
           class:first={selectedCategory === null && i === 0}
-          on:click={() => (selectedCategory = category, console.log(category.$id))}
+          on:click={() => (selectedCategory = category, updateCategory(category.$id) )}
         >
           {category.name}
         </li>
