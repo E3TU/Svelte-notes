@@ -1,7 +1,13 @@
 import { writable, derived } from "svelte/store";
 
-export let categories = writable([]);
-export let firstCategory = derived([categories], ([$categories]) => $categories[0]); 
+export const categories = writable([]);
+export const firstCategoryId = derived([categories], ([$categories]) => $categories[0].$id);
+// export const collectionId = derived([firstCategory], ([$firstCategory]) => $firstCategory.$id); 
+
+// export const categoryId = derived([categories], ([$categories]) => $categories[0]?.$id);
+
+export const categoryId = writable();
+export const selectedCategoryId = writable();
 
 // export let firstCategory = writable(null);
 
@@ -18,7 +24,16 @@ export async function fetchCategories() {
 }
 
 export async function fetchFirstCategory() {
-  firstCategory.subscribe((value) => {
-    console.log(value);
+
+  const unsubscribe = firstCategoryId.subscribe((value) => {
+    // console.log(value);
+    categoryId.set(value)
   });
+
+  unsubscribe()
+
+}
+
+export async function updateCategory($id) {
+  console.log($id);
 }
