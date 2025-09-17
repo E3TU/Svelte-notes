@@ -7,7 +7,7 @@ export const firstCategoryId = derived([categories], ([$categories]) => $categor
 // export const categoryId = derived([categories], ([$categories]) => $categories[0]?.$id);
 
 export const categoryId = writable();
-export const selectedCategoryId = writable();
+// export const selectedCategoryId = writable();
 
 // export let firstCategory = writable(null);
 
@@ -35,5 +35,6 @@ export async function fetchFirstCategory() {
 }
 
 export async function updateCategory($id) {
+  categoryId.set($id);
   console.log($id);
 }
