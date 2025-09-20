@@ -3,7 +3,7 @@ import { createAdminClient } from "../../../lib/server/appwrite.js";
 import { ID, Databases } from "node-appwrite";
 
 const databaseId = import.meta.env.VITE_DATABASE_ID;
-const collectionId = import.meta.env.VITE_COLLECTION_ID;
+// const collectionId = import.meta.env.VITE_COLLECTION_ID;
 
 export async function GET({ locals }) {
   const { account } = createAdminClient(locals);
