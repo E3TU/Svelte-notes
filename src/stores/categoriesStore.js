@@ -1,8 +1,12 @@
+import { json } from "@sveltejs/kit";
 import { writable, derived } from "svelte/store";
 
 export const categories = writable([]);
-export const firstCategoryId = derived([categories], ([$categories]) => $categories[0].$id);
-// export const collectionId = derived([firstCategory], ([$firstCategory]) => $firstCategory.$id); 
+export const firstCategoryId = derived(
+  [categories],
+  ([$categories]) => $categories[0].$id
+);
+// export const collectionId = derived([firstCategory], ([$firstCategory]) => $firstCategory.$id);
 
 // export const categoryId = derived([categories], ([$categories]) => $categories[0]?.$id);
 
@@ -24,17 +28,32 @@ export async function fetchCategories() {
 }
 
 export async function fetchFirstCategory() {
-
-  const unsubscribe = firstCategoryId.subscribe((value) => {
+  firstCategoryId.subscribe(async (value) => {
     // console.log(value);
-    categoryId.set(value)
+    // categoryId.set(value);
+
+    const res = await fetch("api/updateid", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ firstId: value }),
+    });
+    const data = await res.json();
+    console.log(data);
   });
-
-  unsubscribe()
-
 }
 
 export async function updateCategory($id) {
-  categoryId.set($id);
-  console.log($id);
+  // categoryId.set($id);
+  
+  const res = await fetch("/api/updateid", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ updatedId: $id }),
+  });
+  const data = await res.json();
+  console.log(data);
 }
