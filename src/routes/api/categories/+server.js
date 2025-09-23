@@ -14,6 +14,8 @@ export async function GET({ locals }) {
 
     let categories = fetchCategoriesResponse.collections;
 
+    // console.log(categories[0].$id);
+
     return json({ collections: categories  });
   } catch (error) {
     console.error(error);
@@ -33,7 +35,7 @@ export async function POST({ request, locals }) {
     const createCategory = await databases.createCollection(
       databaseId,
       id,
-      categoryName
+      categoryName,
     );
 
     return json(createCategory);
