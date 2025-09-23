@@ -30,6 +30,7 @@ export async function addNote(noteTitle, noteContent) {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
+        action: "newnote",
         title: noteTitle,
         content: noteContent,
       }),
