@@ -1,5 +1,6 @@
 import { json } from "@sveltejs/kit";
 import { writable, derived } from "svelte/store";
+import { fetchNotes } from "./notesStore";
 
 export const categories = writable([]);
 export const firstCategoryId = derived(
@@ -7,6 +8,7 @@ export const firstCategoryId = derived(
   ([$categories]) => $categories[0].$id
 );
 
+export const categoryId = writable();
 
 export async function fetchCategories() {
   const res = await fetch("api/categories");
@@ -23,27 +25,31 @@ export async function fetchCategories() {
 export async function fetchFirstCategory() {
   firstCategoryId.subscribe(async (value) => {
     // console.log(value);
-    
-    const res = await fetch("api/updateid", {
+    const res = await fetch("/api/notes", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ firstId: value }),
+      body: JSON.stringify({ action: "firstcategoryid", firstId: value }),
     });
     const data = await res.json();
     console.log(data);
+    fetchNotes();
   });
 }
 
 export async function updateCategory($id) {
-  const res = await fetch("/api/updateid", {
+  categoryId.set($id);
+  // console.log($id);
+
+  const res = await fetch("/api/notes", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ updatedId: $id }),
+    body: JSON.stringify({ action: "updatedcategoryid", updatedId: $id })
   });
   const data = await res.json();
   console.log(data);
+  fetchNotes();
 }
