@@ -11,12 +11,12 @@
 
   // Import fade transition
   import { fade } from "svelte/transition";
-  import { onMount } from "svelte";
+  // import { onMount } from "svelte";
 
 
-  onMount(() => {
-    fetchNotes();
-  });
+  // onMount(() => {
+  //   fetchNotes();
+  // });
 
   // Dropdown Menu
   let isExpanded = false;
