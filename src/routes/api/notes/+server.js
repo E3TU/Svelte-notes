@@ -5,11 +5,16 @@ import { Databases, ID } from "appwrite";
 // import { content, title } from "../../../stores/notesStore.js";
 
 const databaseId = import.meta.env.VITE_DATABASE_ID;
-const collectionId = import.meta.env.VITE_COLLECTION_ID;
+// const collectionId = import.meta.env.VITE_COLLECTION_I
+
+let collectionId;
 
 export async function GET({ locals }) {
   const { account } = createAdminClient(locals);
   const databases = new Databases(account.client);
+
+  //Logging collection id to make sure it gives the correct id
+  console.log(collectionId);
 
   try {
     const fetchNotesResponse = await databases.listDocuments(
@@ -17,8 +22,7 @@ export async function GET({ locals }) {
       collectionId
     );
 
-    return json({ documents: fetchNotesResponse.documents })
-
+    return json({ documents: fetchNotesResponse.documents });
   } catch (error) {
     console.error(error);
     return json({ error: "Failed to fetch notes" }, { status: 500 });
@@ -29,24 +33,64 @@ export async function POST({ request, locals }) {
   const { account } = createAdminClient(locals);
   const databases = new Databases(account.client);
 
-  try {
-    // const noteData = get(newNote);
-    const noteId = ID.unique();
+  const data = await request.json();
+  
 
-    const { title, content } = await request.json();
+  if (data.action === "firstcategoryid") {
+    const firstcategoryId = data.firstId;
 
-    const saveNotesResponse = await databases.createDocument(
-      databaseId,
-      collectionId,
-      noteId,
-      // noteData,
-      { title, content, Created: Date.now() }
-    );
-    return json(saveNotesResponse);
-  } catch (error) {
-    console.error(error);
-    return json({ error: "Failed to save note" }, { status: 500 });
+    collectionId = firstcategoryId;
+
+    return json({ firstcategoryId });
   }
+  if (data.action === "updatedcategoryid") {
+    const updatedcategoryId = data.updatedId;
+
+    collectionId = updatedcategoryId;
+
+    return json({ updatedcategoryId });
+  }
+  if (data.action === "newnote") {
+    try {
+      const noteId = ID.unique();
+
+      // const { title, content } = await request.json();
+
+      const test = data;
+      const { title, content } = test;
+
+      const saveNotesResponse = await databases.createDocument(
+        databaseId,
+        collectionId,
+        noteId,
+        // noteData,
+        { title, content, Created: Date.now() }
+      );
+      return json(saveNotesResponse);
+    } catch (error) {
+      console.error(error);
+      return json({ error: "Failed to save note" }, { status: 500 });
+    }
+  }
+
+  // try {
+  //   // const noteData = get(newNote);
+  //   const noteId = ID.unique();
+
+  //   const { title, content } = await request.json();
+
+  //   const saveNotesResponse = await databases.createDocument(
+  //     databaseId,
+  //     collectionId,
+  //     noteId,
+  //     // noteData,
+  //     { title, content, Created: Date.now() }
+  //   );
+  //   return json(saveNotesResponse);
+  // } catch (error) {
+  //   console.error(error);
+  //   return json({ error: "Failed to save note" }, { status: 500 });
+  // }
 }
 
 export async function PATCH({ request, locals }) {
@@ -59,7 +103,8 @@ export async function PATCH({ request, locals }) {
   // Build object that contains note title and note content but leave out empty values
   const dataToUpdate = {};
   if (updatedFields.title?.trim()) dataToUpdate.title = updatedFields.title;
-  if (updatedFields.content.trim()) dataToUpdate.content = updatedFields.content;
+  if (updatedFields.content.trim())
+    dataToUpdate.content = updatedFields.content;
 
   try {
     const editNote = await databases.updateDocument(
