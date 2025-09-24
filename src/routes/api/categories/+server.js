@@ -16,7 +16,7 @@ export async function GET({ locals }) {
 
     // console.log(categories[0].$id);
 
-    return json({ collections: categories  });
+    return json({ collections: categories });
   } catch (error) {
     console.error(error);
     return json({ error: "Failed to fetch categories" }, { status: 500 });
@@ -35,8 +35,12 @@ export async function POST({ request, locals }) {
     const createCategory = await databases.createCollection(
       databaseId,
       id,
-      categoryName,
+      categoryName
     );
+
+    await databases.createStringAttribute(databaseId, id, "title", 255, true);
+    await databases.createStringAttribute(databaseId, id, "content", 64000, true);
+    await databases.createIntegerAttribute(databaseId, id, "Created", true)
 
     return json(createCategory);
   } catch (error) {
