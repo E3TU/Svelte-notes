@@ -6,17 +6,11 @@
   import Icon from "@iconify/svelte";
 
   // Import notes store
-  import { deleteNote, editNote, fetchNotes, documents } from "../stores/notesStore";
+  import { deleteNote, documents } from "../stores/notesStore";
 
 
   // Import fade transition
   import { fade } from "svelte/transition";
-  // import { onMount } from "svelte";
-
-
-  // onMount(() => {
-  //   fetchNotes();
-  // });
 
   // Dropdown Menu
   let isExpanded = false;
@@ -24,11 +18,6 @@
     e.stopPropagation();
     isExpanded = !isExpanded;
   }
-
-  // export async function deleteNoteByID() {
-  //   // deleteNote(note.id);
-  //   deleteNoteMenu();
-  // }
 
   import { createNoteMenu } from "../stores/CreateNoteMenu";
   import { editNoteMenu } from "../stores/EditNoteMenu";
