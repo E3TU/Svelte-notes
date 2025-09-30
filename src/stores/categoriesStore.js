@@ -1,8 +1,17 @@
 import { json } from "@sveltejs/kit";
-import { writable, derived } from "svelte/store";
+import { writable, derived, get } from "svelte/store";
 import { fetchNotes } from "./notesStore";
 
 export const categories = writable([]);
+
+// categories.subscribe((value) => {
+//   console.log(value.length);
+
+//   if (value.length === 0) {
+//     console.log("kurwa bober");
+//   }
+// })
+
 export const firstCategoryId = derived(
   [categories],
   ([$categories]) => $categories[0].$id
@@ -17,9 +26,17 @@ export async function fetchCategories() {
   // Set collection data to categories store
   categories.set(data.collections);
 
-  // console.log(data);
+  const isEmpty = get(categories).length;
+  // console.log(isEmpty);
 
-  fetchFirstCategory();
+  if (isEmpty === 0) {
+    // console.log("No categories to load");
+    return 0;
+  } else {
+    fetchFirstCategory();
+  }
+
+  // console.log(data);
 }
 
 export async function fetchFirstCategory() {
@@ -47,7 +64,7 @@ export async function updateCategory($id) {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ action: "updatedcategoryid", updatedId: $id })
+    body: JSON.stringify({ action: "updatedcategoryid", updatedId: $id }),
   });
   const data = await res.json();
   console.log(data);
