@@ -40,7 +40,6 @@ export async function POST({ request, locals }) {
 
     await databases.createStringAttribute(databaseId, id, "title", 255, true);
     await databases.createStringAttribute(databaseId, id, "content", 64000, true);
-    await databases.createIntegerAttribute(databaseId, id, "Created", true)
 
     return json(createCategory);
   } catch (error) {
