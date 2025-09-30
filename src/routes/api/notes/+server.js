@@ -56,8 +56,8 @@ export async function POST({ request, locals }) {
 
       // const { title, content } = await request.json();
 
-      const test = data;
-      const { title, content } = test;
+      const requestData = data;
+      const { title, content } = requestData;
 
       const saveNotesResponse = await databases.createDocument(
         databaseId,
