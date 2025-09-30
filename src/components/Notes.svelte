@@ -8,9 +8,12 @@
   // Import notes store
   import { deleteNote, documents } from "../stores/notesStore";
 
-
   // Import fade transition
   import { fade } from "svelte/transition";
+
+  import { createNoteMenu } from "../stores/CreateNoteMenu";
+  import { editNoteMenu } from "../stores/EditNoteMenu";
+  import { derived } from "svelte/store";
 
   // Dropdown Menu
   let isExpanded = false;
@@ -19,8 +22,23 @@
     isExpanded = !isExpanded;
   }
 
-  import { createNoteMenu } from "../stores/CreateNoteMenu";
-  import { editNoteMenu } from "../stores/EditNoteMenu";
+  let sortedItems = derived(documents, ($documents) => {
+    return [...($documents ?? [])];
+  });
+
+  function sortByTitle() {
+    documents.update(($documents) =>
+      [...$documents].sort((a, b) => a.title.localeCompare(b.title))
+    );
+  }
+
+  function sortByCreatedAt() {
+    documents.update(($documents) =>
+      [...$documents].sort(
+        (a, b) => new Date(a.$createdAt) - new Date(b.$createdAt)
+      )
+    );
+  }
 </script>
 
 <div class="notes-container">
@@ -34,8 +52,8 @@
       >
       {#if isExpanded}
         <ul>
-          <li>Name</li>
-          <li>Date</li>
+          <li><button class="sortnotes-btn" on:click={sortByTitle}>Name</button></li>
+          <li><button class="sortnotes-btn" on:click={sortByCreatedAt}>Date</button></li>
         </ul>
       {/if}
     </nav>
@@ -43,37 +61,48 @@
 
   <div class="notes-wrapper">
     <!--Notes go here grrrrr pau pau-->
-    {#each $documents as document }
-      <div class="note" transition:fade={{ delay: 250, duration: 300 }}>
-        <h1 class="title">{document.title}</h1>
-        <p class="content">{document.content}</p>
-        <div class="control-buttons">
-          <button on:click={(e) => { e.stopPropagation(); editNoteMenu(document.$id); }} id="edit-note">
-            <Icon class="edit-btn" icon="material-symbols:edit-outline" />
-          </button>
-          <button
-            id="delete-note"
-            on:click={(e) => {
-              e.stopPropagation();
-              deleteNote(document.$id);
-            }}
-          >
-            <Icon class="delete-btn" icon="ic:outline-delete" />
-          </button>
+    {#if $documents}
+      {#each $sortedItems as document}
+        <div class="note" transition:fade={{ delay: 250, duration: 300 }}>
+          <h1 class="title">{document.title}</h1>
+          <p class="content">{document.content}</p>
+          <div class="control-buttons">
+            <button
+              on:click={(e) => {
+                e.stopPropagation();
+                editNoteMenu(document.$id);
+              }}
+              id="edit-note"
+            >
+              <Icon class="edit-btn" icon="material-symbols:edit-outline" />
+            </button>
+            <button
+              id="delete-note"
+              on:click={(e) => {
+                e.stopPropagation();
+                deleteNote(document.$id);
+              }}
+            >
+              <Icon class="delete-btn" icon="ic:outline-delete" />
+            </button>
+          </div>
         </div>
-      </div>
-    {/each}
+      {/each}
+    {:else}
+      <p>Loading items</p>
+    {/if}
   </div>
 </div>
 
 <style lang="scss">
   .notes-container {
     margin: 1rem;
-    background-color: $dark-gray;
+    // background-color: $dark-gray;
     height: 100%;
     border-radius: 12px;
     width: auto;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    // box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: transparent;
     font-family: "Rubik Variable", sans-serif;
   }
   .action-bar {
@@ -152,6 +181,15 @@
       border-radius: 8px;
     }
   }
+  .sortnotes-btn{
+    background: none;
+    outline: none;
+    border: none;
+    color: $white;
+    font-size: 1rem;
+    width: 100%;
+    text-align: start;
+  }
   .notes-wrapper {
     width: 100%;
     height: auto;
@@ -161,7 +199,7 @@
     margin: 2rem 1rem;
     display: flex;
     flex-direction: column;
-    background-color: $bg-color;
+    background-color: $dark-gray;
     color: $white;
     height: 20rem;
     width: 15rem;
