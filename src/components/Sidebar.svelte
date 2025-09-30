@@ -4,7 +4,11 @@
   //Import icons
   import Icon from "@iconify/svelte";
 
-  import { fetchCategories, categories, updateCategory } from "../stores/categoriesStore";
+  import {
+    fetchCategories,
+    categories,
+    updateCategory,
+  } from "../stores/categoriesStore";
 
   import { logoutConfirmMenu } from "../stores/LogoutConfirm";
   import { createCategoryMenu } from "../stores/CreateCategoryMenu";
@@ -17,7 +21,6 @@
   });
 
   let selectedCategory = null;
-
 </script>
 
 <div class="sidebar-container">
@@ -34,15 +37,19 @@
   </div>
   <div class="categories-container">
     <ul>
-      {#each $categories as category, i}
-        <li
-          class:selected={selectedCategory === category}
-          class:first={selectedCategory === null && i === 0}
-          on:click={() => (selectedCategory = category, updateCategory(category.$id) )}
-        >
-          {category.name}
-        </li>
-      {/each}
+      {#if $categories}
+        {#each $categories as category, i}
+          <li
+            class:selected={selectedCategory === category}
+            class:first={selectedCategory === null && i === 0}
+            on:click={() => (
+              (selectedCategory = category), updateCategory(category.$id)
+            )}
+          >
+            {category.name}
+          </li>
+        {/each}
+      {/if}
     </ul>
   </div>
   <div class="profile-wrapper">
