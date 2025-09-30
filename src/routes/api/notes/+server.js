@@ -14,7 +14,7 @@ export async function GET({ locals }) {
   const databases = new Databases(account.client);
 
   //Logging collection id to make sure it gives the correct id
-  console.log(collectionId);
+  // console.log(collectionId);
 
   try {
     const fetchNotesResponse = await databases.listDocuments(
@@ -64,7 +64,7 @@ export async function POST({ request, locals }) {
         collectionId,
         noteId,
         // noteData,
-        { title, content, Created: Date.now() }
+        { title, content, }
       );
       return json(saveNotesResponse);
     } catch (error) {
