@@ -14,6 +14,8 @@
   import { createNoteMenu } from "../stores/CreateNoteMenu";
   import { editNoteMenu } from "../stores/EditNoteMenu";
   import { derived } from "svelte/store";
+  import Fuse from "fuse.js";
+  import { searchTerm } from "../stores/searchStore";
 
   // Dropdown Menu
   let isExpanded = false;
@@ -22,6 +24,7 @@
     isExpanded = !isExpanded;
   }
 
+  // Sorting notes by name or date
   let sortedItems = derived(documents, ($documents) => {
     return [...($documents ?? [])];
   });
@@ -39,6 +42,31 @@
       )
     );
   }
+
+  // Searching notes
+  let items = [];
+  let query;
+
+  documents.subscribe((value) => {
+    items = value;
+  });
+
+  searchTerm.subscribe((value) => {
+    query = value;
+  });
+
+  let searchResults = [];
+
+  $: {
+    const options = {
+      keys: ["title"],
+      threshold: 0.3,
+    };
+
+    const fuse = new Fuse(items, options);
+
+    searchResults = query ? fuse.search(query).map((result) => result.item) : $sortedItems;
+  }
 </script>
 
 <div class="notes-container">
@@ -52,8 +80,14 @@
       >
       {#if isExpanded}
         <ul>
-          <li><button class="sortnotes-btn" on:click={sortByTitle}>Name</button></li>
-          <li><button class="sortnotes-btn" on:click={sortByCreatedAt}>Date</button></li>
+          <li>
+            <button class="sortnotes-btn" on:click={sortByTitle}>Name</button>
+          </li>
+          <li>
+            <button class="sortnotes-btn" on:click={sortByCreatedAt}
+              >Date</button
+            >
+          </li>
         </ul>
       {/if}
     </nav>
@@ -62,7 +96,7 @@
   <div class="notes-wrapper">
     <!--Notes go here grrrrr pau pau-->
     {#if $documents}
-      {#each $sortedItems as document}
+      {#each searchResults as document}
         <div class="note" transition:fade={{ delay: 250, duration: 300 }}>
           <h1 class="title">{document.title}</h1>
           <p class="content">{document.content}</p>
@@ -181,7 +215,7 @@
       border-radius: 8px;
     }
   }
-  .sortnotes-btn{
+  .sortnotes-btn {
     background: none;
     outline: none;
     border: none;
@@ -189,6 +223,7 @@
     font-size: 1rem;
     width: 100%;
     text-align: start;
+    cursor: pointer;
   }
   .notes-wrapper {
     width: 100%;

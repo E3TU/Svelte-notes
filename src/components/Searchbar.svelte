@@ -4,10 +4,13 @@
 
   //Import icon
   import Icon from "@iconify/svelte";
+
+  import { searchTerm } from "../stores/searchStore";
+
 </script>
 
 <div class="searchbar">
-  <input type="text" placeholder="Search For Note..." />
+  <input bind:value={$searchTerm} type="text" placeholder="Search For Note..." />
   <button id="search-btn"
     ><Icon icon="grommet-icons:search" color="#fff" /></button
   >
@@ -22,7 +25,7 @@
     height: 4rem;
     margin: 1rem;
     border-radius: 12px;
-    font-family: 'Rubik Variable', sans-serif;
+    font-family: "Rubik Variable", sans-serif;
   }
   input {
     background-color: $dark-gray;
