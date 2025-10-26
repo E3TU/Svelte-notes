@@ -141,6 +141,8 @@
       padding: 1rem 1rem;
       border-radius: 5px;
       font-size: 1rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
   .first {
