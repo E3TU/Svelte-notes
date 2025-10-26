@@ -4,11 +4,6 @@ import { redirect } from "@sveltejs/kit";
 //Function that checks if user is not logged in they get redirected to register page.
 export async function load({ locals, event }) {
     if (!locals.user) redirect(302, "/register");
-
-
-    return{
-        user: locals.user,
-    };
 }
 
 //Function to Log out
