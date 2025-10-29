@@ -1,13 +1,11 @@
 <script>
-  // Import Font
-  import "@fontsource-variable/rubik";
-  //Import icons
   import Icon from "@iconify/svelte";
   import { fade } from "svelte/transition";
 
-  import { createNoteMenu } from "../stores/CreateNoteMenu.js";
-
   import {addNote, title, content } from "../stores/notesStore.js";
+
+  import { closeModal } from "../stores/modalStore.js";
+  
 
   async function handleaddNote() {
 
@@ -26,7 +24,7 @@
   <div class="createnote">
     <div class="top-section">
       <h1 class="createnote-heading">Create new note</h1>
-      <button class="closemenu-btn" on:click|preventDefault={createNoteMenu}>
+      <button class="closemenu-btn" on:click|preventDefault={closeModal}>
         <Icon class="closemenu-icon" icon="basil:cross-outline" />
       </button>
     </div>

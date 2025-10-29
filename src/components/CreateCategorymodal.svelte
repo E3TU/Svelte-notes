@@ -1,13 +1,9 @@
 <script>
-  // Import Font
-  import "@fontsource-variable/rubik";
-  //Import icons
-  import Icon from "@iconify/svelte";
   import { fade } from "svelte/transition";
 
-  import { createCategoryMenu } from "../stores/CreateCategoryMenu";
-
   import { fetchCategories } from "../stores/categoriesStore";
+
+  import { closeModal } from "../stores/modalStore";
 
   let categoryName;
 
@@ -19,8 +15,6 @@
     });
 
     const data = await res.json();
-
-    createCategoryMenu();
 
     fetchCategories();
   }
@@ -37,10 +31,10 @@
     <div class="bottom-section">
       <input bind:value={categoryName} id="category-name" />
       <div class="button-container">
-        <button on:click={createCategory} class="logout-btn" id="confirm-button"
+        <button on:click={createCategory} id="confirm-button"
           >Create</button
         >
-        <button on:click|preventDefault={createCategoryMenu} id="cancel-button"
+        <button on:click|preventDefault={closeModal} id="cancel-button"
           >Cancel</button
         >
       </div>
