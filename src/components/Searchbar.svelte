@@ -1,6 +1,4 @@
 <script>
-  //Import font
-  import "@fontsource-variable/rubik";
 
   //Import icon
   import Icon from "@iconify/svelte";

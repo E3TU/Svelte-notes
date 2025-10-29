@@ -10,8 +10,4 @@ export const selectedNoteId = writable(null);
 export function editNoteMenu(id) {
   selectedNoteId.set(id);
   isEditNoteMenuOpen.update((value) => !value);
-
-//   selectedNoteId.subscribe((value) => {
-//     console.log(value);
-//   });
 }

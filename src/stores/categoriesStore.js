@@ -1,16 +1,7 @@
-import { json } from "@sveltejs/kit";
 import { writable, derived, get } from "svelte/store";
 import { fetchNotes } from "./notesStore";
 
 export const categories = writable([]);
-
-// categories.subscribe((value) => {
-//   console.log(value.length);
-
-//   if (value.length === 0) {
-//     console.log("kurwa bober");
-//   }
-// })
 
 export const firstCategoryId = derived(
   [categories],

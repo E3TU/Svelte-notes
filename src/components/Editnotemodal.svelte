@@ -1,6 +1,4 @@
 <script>
-  // Import Font
-  import "@fontsource-variable/rubik";
   //Import icons
   import Icon from "@iconify/svelte";
   import { fade } from "svelte/transition";

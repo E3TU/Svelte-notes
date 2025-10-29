@@ -1,4 +1,4 @@
-import { error, json } from "@sveltejs/kit";
+import { json } from "@sveltejs/kit";
 import { createAdminClient } from "../../../lib/server/appwrite.js";
 import { ID, Databases } from "node-appwrite";
 

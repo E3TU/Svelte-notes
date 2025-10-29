@@ -13,16 +13,10 @@ export async function fetchNotes() {
   const res = await fetch("api/notes");
   const data = await res.json();
   documents.set(data.documents);
-
-  // documents.subscribe(value => {
-  //   console.log(value);
-  // });
 }
 
 // Function to add notes
 export async function addNote(noteTitle, noteContent) {
-  // Add the note to UI
-  // const newId = uuidv4();
 
   // Save the note to database
   try {

@@ -1,6 +1,4 @@
 <script>
-  //Import font
-  import "@fontsource-variable/rubik";
   //Import icons
   import Icon from "@iconify/svelte";
 
@@ -10,9 +8,8 @@
     updateCategory,
   } from "../stores/categoriesStore";
 
-  import { logoutConfirmMenu } from "../stores/LogoutConfirm";
-  import { createCategoryMenu } from "../stores/CreateCategoryMenu";
   import { onMount } from "svelte";
+  import { openModal} from "../stores/modalStore";
 
   export let userName;
 
@@ -30,7 +27,7 @@
   <div class="top-wrapper">
     <h4 class="categories-heading">Categories</h4>
     <button
-      on:click={createCategoryMenu}
+      on:click={() => openModal("createcategory")}
       title="Add Category"
       id="add-categorybtn"><Icon icon="tabler:plus" class="plus-icon" /></button
     >
@@ -66,7 +63,7 @@
       <!-- <form class="logout-form" method="post">
           <button class="logout-btn" type="submit"><Icon class="logout-icon" icon="uil:signout" /></button>
          </form> -->
-      <button on:click={logoutConfirmMenu} class="logout-btn"
+      <button on:click={() => openModal("logout")} class="logout-btn"
         ><Icon class="logout-icon" icon="uil:signout" /></button
       >
     </div>

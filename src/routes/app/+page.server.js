@@ -2,7 +2,7 @@ import { SESSION_COOKIE, createSessionClient } from "$lib/server/appwrite.js";
 import { redirect } from "@sveltejs/kit";
 
 //Function that checks if user is not logged in they get redirected to register page.
-export async function load({ locals, event }) {
+export async function load({ locals }) {
     if (!locals.user) redirect(302, "/register");
 }
 

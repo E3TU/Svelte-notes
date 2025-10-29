@@ -1,6 +1,4 @@
 <script>
-  // Import font
-  import "@fontsource-variable/rubik";
 
   // Import icons
   import Icon from "@iconify/svelte";
@@ -11,11 +9,11 @@
   // Import fade transition
   import { fade } from "svelte/transition";
 
-  import { createNoteMenu } from "../stores/CreateNoteMenu";
   import { editNoteMenu } from "../stores/EditNoteMenu";
   import { derived } from "svelte/store";
   import Fuse from "fuse.js";
   import { searchTerm } from "../stores/searchStore";
+  import { openModal } from "../stores/modalStore";
 
   // Dropdown Menu
   let isExpanded = false;
@@ -71,7 +69,7 @@
 
 <div class="notes-container">
   <div class="action-bar">
-    <button class="createnote-btn" on:click={createNoteMenu}
+    <button class="createnote-btn" on:click={() => openModal("createnote")}
       ><Icon icon="ph:plus-bold" class="plussign-icon" />New Note</button
     >
     <nav class="dropdown-menu">
