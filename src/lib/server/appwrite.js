@@ -20,6 +20,11 @@ export function createAdminClient() {
 }
 // Creates a client instance for interacting with the Appwrite backend  using the current user's session stored in cookies
 export function createSessionClient(event) {
+
+    if (!event || !event.cookies) {
+        throw new Error("Event or event.cookies is undefined");
+    }
+
     const client = new Client()
     .setEndpoint(PUBLIC_APPWRITE_ENDPOINT)
     .setProject(PUBLIC_APPWRITE_PROJECT);
