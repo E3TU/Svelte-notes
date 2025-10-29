@@ -1,1 +1,6 @@
-<script>import "../app.scss";</script><slot></slot>
+<script>
+  import "../app.scss";
+  import "@fontsource-variable/rubik";
+</script>
+
+<slot></slot>
