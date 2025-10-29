@@ -5,6 +5,7 @@
   export let data;
   const { user } = data;
   let username = user.name;
+
 </script>
 
 <Pagetransitions>
@@ -21,11 +22,11 @@
       <h1>Settings</h1>
     </div>
     <div class="bottom-wrapper">
-      <div class="form">
+      <form class="change-user-data-form" method="post">
         <div class="username-wrapper">
           <h2>Change Username</h2>
           <label for="change-username">Username</label>
-          <input id="change-username" bind:value={username} />
+          <input name="change-username" id="change-username" bind:value={username} />
         </div>
         <div class="password-wrapper">
           <h2>Change Password</h2>
@@ -34,8 +35,8 @@
           <label for="new-password">New Password</label>
           <input id="new-password" />
         </div>
-        <button id="save-btn">Save Changes</button>
-      </div>
+        <button type="submit" id="save-btn">Save Changes</button>
+      </form>
     </div>
   </div>
 </Pagetransitions>
@@ -129,7 +130,7 @@
     border: 2px solid $green;
     transition: 0.5s;
   }
-  .form {
+  .change-user-data-form {
     background-color: $dark-gray;
     width: auto;
     height: auto;
