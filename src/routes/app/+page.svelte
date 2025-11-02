@@ -16,9 +16,6 @@
   import { isEditNoteMenuOpen } from "../../stores/EditNoteMenu";
   import { activeModal, closeModal } from "../../stores/modalStore";
 
-  export let data;
-  const { user } = data;
-  const username = user.name;
 </script>
 
 <Pagetransitions>
@@ -40,7 +37,7 @@
     {/if}
     <div class="flex-items-left">
       <!--Pass username to sidebar component as prop-->
-      <Sidebar userName={username} />
+      <Sidebar />
     </div>
     <div class="flex-items-right">
       <Searchbar />
