@@ -11,7 +11,7 @@
   import { onMount } from "svelte";
   import { openModal} from "../stores/modalStore";
 
-  export let userName;
+  import { userName } from "../stores/account";
 
   onMount(() => {
     fetchCategories();
@@ -53,7 +53,7 @@
     <!-- <Icon class="profile-icon" icon="gg:profile" /> -->
     <!-- <Icon class="profile-icon" icon="iconamoon:profile-circle-fill" /> -->
     <Icon class="profile-icon" icon="pajamas:profile" />
-    <p title={userName} class="username">{userName}</p>
+    <p title={$userName} class="username">{$userName}</p>
     <div title="Settings" class="settings-wrapper">
       <a href="/settings"
         ><Icon class="settings-icon" icon="material-symbols:settings" />
