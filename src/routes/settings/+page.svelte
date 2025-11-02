@@ -1,11 +1,13 @@
 <script>
   import Icon from "@iconify/svelte";
   import Pagetransitions from "../../components/Pagetransitions.svelte";
+  import { userName, fetchUserName } from "../../stores/account";
+  import { onMount } from "svelte";
 
-  export let data;
-  const { user } = data;
-  let username = user.name;
-
+  onMount(() => {
+    fetchUserName();
+  });
+  
 </script>
 
 <Pagetransitions>
@@ -22,11 +24,15 @@
       <h1>Settings</h1>
     </div>
     <div class="bottom-wrapper">
-      <form class="change-user-data-form" method="post">
+      <form class="change-user-data-form" on:submit={fetchUserName}>
         <div class="username-wrapper">
           <h2>Change Username</h2>
           <label for="change-username">Username</label>
-          <input name="change-username" id="change-username" bind:value={username} />
+          <input
+            name="change-username"
+            id="change-username"
+            bind:value={$userName}
+          />
         </div>
         <div class="password-wrapper">
           <h2>Change Password</h2>
