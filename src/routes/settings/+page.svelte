@@ -1,7 +1,7 @@
 <script>
   import Icon from "@iconify/svelte";
   import Pagetransitions from "../../components/Pagetransitions.svelte";
-  import { userName, fetchUserName } from "../../stores/account";
+  import { userName, fetchUserName, updateUsername } from "../../stores/account";
   import { onMount } from "svelte";
 
   onMount(() => {
@@ -24,7 +24,7 @@
       <h1>Settings</h1>
     </div>
     <div class="bottom-wrapper">
-      <form class="change-user-data-form" on:submit={fetchUserName}>
+      <form class="change-user-data-form" on:submit|preventDefault={updateUsername}>
         <div class="username-wrapper">
           <h2>Change Username</h2>
           <label for="change-username">Username</label>
