@@ -7,8 +7,6 @@ export async function GET(event) {
   const currentAccount = await account.get();
   let userName = currentAccount.name;
 
-  // console.log(userName);
-
   return json({ username: userName });
 }
 
@@ -17,8 +15,6 @@ export async function POST(event) {
   const { account } = createSessionClient(event);
 
   const { username } = await request.json();
-
-  console.log(username);
 
   const updateUsername = await account.updateName(username);
 
