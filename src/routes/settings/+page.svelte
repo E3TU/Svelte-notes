@@ -1,13 +1,31 @@
 <script>
   import Icon from "@iconify/svelte";
   import Pagetransitions from "../../components/Pagetransitions.svelte";
-  import { userName, fetchUserName, updateUsername } from "../../stores/account";
+  import {
+    userName,
+    fetchUserName,
+    updateUsername,
+    currentPassword,
+    newPassword,
+  } from "../../stores/account";
   import { onMount } from "svelte";
 
   onMount(() => {
     fetchUserName();
   });
-  
+
+  let showCurrentPassword = false;
+  let showNewPassword = false;
+
+  function toggleCurrentPasswordVisibility() {
+    showCurrentPassword = !showCurrentPassword;
+  }
+
+  function toggleNewPasswordVisibility() {
+    showNewPassword =! showNewPassword;
+  }
+
+
 </script>
 
 <Pagetransitions>
@@ -24,7 +42,10 @@
       <h1>Settings</h1>
     </div>
     <div class="bottom-wrapper">
-      <form class="change-user-data-form" on:submit|preventDefault={updateUsername}>
+      <form
+        class="change-user-data-form"
+        on:submit|preventDefault={updateUsername}
+      >
         <div class="username-wrapper">
           <h2>Change Username</h2>
           <label for="change-username">Username</label>
@@ -36,10 +57,16 @@
         </div>
         <div class="password-wrapper">
           <h2>Change Password</h2>
-          <label for="change-password">Password</label>
-          <input id="change-password" />
+          <label for="change-password">Current Password</label>
+          <div class="input-wrapper">
+            <input type={showCurrentPassword ? 'text' : 'password'} id="change-password" />
+            <button type="button" on:click={toggleCurrentPasswordVisibility} class="show-password-btn"> <Icon icon="mdi:show" class="show-password" /> </button>
+          </div>
           <label for="new-password">New Password</label>
-          <input id="new-password" />
+          <div class="input-wrapper">
+            <input type={showNewPassword ? 'text' : 'password'} id="new-password" />
+            <button type="button" on:click={toggleNewPasswordVisibility} class="show-password-btn"> <Icon icon="mdi:show" class="show-password" /> </button>
+          </div>
         </div>
         <button type="submit" id="save-btn">Save Changes</button>
       </form>
@@ -105,6 +132,21 @@
       border: 2px solid $green;
       transition: 0.5s;
     }
+  }
+  .input-wrapper {
+    display: flex;
+    align-items: center;
+  }
+  .show-password-btn{
+    background-color: transparent;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+  }
+  :global(.show-password) {
+    color: $white;
+    font-size: 1.5rem;
+    margin: 1rem 0rem 0rem 0.5rem;
   }
   .username-wrapper {
     display: flex;
