@@ -22,10 +22,8 @@
   }
 
   function toggleNewPasswordVisibility() {
-    showNewPassword =! showNewPassword;
+    showNewPassword = !showNewPassword;
   }
-
-
 </script>
 
 <Pagetransitions>
@@ -59,13 +57,39 @@
           <h2>Change Password</h2>
           <label for="change-password">Current Password</label>
           <div class="input-wrapper">
-            <input type={showCurrentPassword ? 'text' : 'password'} id="change-password" />
-            <button type="button" on:click={toggleCurrentPasswordVisibility} class="show-password-btn"> <Icon icon="mdi:show" class="show-password" /> </button>
+            <input
+              type={showCurrentPassword ? "text" : "password"}
+              id="change-password"
+            />
+            <button
+              type="button"
+              on:click={toggleCurrentPasswordVisibility}
+              class="show-password-btn"
+            >
+              {#if showCurrentPassword}
+                <Icon icon="mdi:show" class="show-password" />
+              {:else}
+                <Icon icon="mdi:hide" class="show-password" />
+              {/if}
+            </button>
           </div>
           <label for="new-password">New Password</label>
           <div class="input-wrapper">
-            <input type={showNewPassword ? 'text' : 'password'} id="new-password" />
-            <button type="button" on:click={toggleNewPasswordVisibility} class="show-password-btn"> <Icon icon="mdi:show" class="show-password" /> </button>
+            <input
+              type={showNewPassword ? "text" : "password"}
+              id="new-password"
+            />
+            <button
+              type="button"
+              on:click={toggleNewPasswordVisibility}
+              class="show-password-btn"
+            >
+            {#if showNewPassword}
+                <Icon icon="mdi:show" class="show-password" />
+              {:else}
+                <Icon icon="mdi:hide" class="show-password" />
+              {/if}
+            </button>
           </div>
         </div>
         <button type="submit" id="save-btn">Save Changes</button>
@@ -137,7 +161,7 @@
     display: flex;
     align-items: center;
   }
-  .show-password-btn{
+  .show-password-btn {
     background-color: transparent;
     border: none;
     padding: 0.5rem;
