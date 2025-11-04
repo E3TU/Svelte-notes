@@ -24,6 +24,19 @@
   function toggleNewPasswordVisibility() {
     showNewPassword = !showNewPassword;
   }
+
+  let currentPasswordInputElement;
+  let newPasswordInputElement;
+
+  $: {
+    if (currentPasswordInputElement) {
+      currentPasswordInputElement.type = showCurrentPassword ? 'text' : 'password';
+    }
+    if(newPasswordInputElement) {
+      newPasswordInputElement.type = showNewPassword ? 'text' : 'password';
+    }
+  }
+
 </script>
 
 <Pagetransitions>
@@ -58,8 +71,9 @@
           <label for="change-password">Current Password</label>
           <div class="input-wrapper">
             <input
-              type={showCurrentPassword ? "text" : "password"}
+              bind:this={currentPasswordInputElement}
               id="change-password"
+              bind:value={$currentPassword}
             />
             <button
               type="button"
@@ -76,8 +90,9 @@
           <label for="new-password">New Password</label>
           <div class="input-wrapper">
             <input
-              type={showNewPassword ? "text" : "password"}
+              bind:this={newPasswordInputElement}
               id="new-password"
+              bind:value={$newPassword}
             />
             <button
               type="button"
