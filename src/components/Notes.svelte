@@ -1,5 +1,4 @@
 <script>
-
   // Import icons
   import Icon from "@iconify/svelte";
 
@@ -14,6 +13,8 @@
   import Fuse from "fuse.js";
   import { searchTerm } from "../stores/searchStore";
   import { openModal } from "../stores/modalStore";
+  import { fetchUserName } from "../stores/account";
+  import { onMount } from "svelte";
 
   // Dropdown Menu
   let isExpanded = false;
@@ -63,8 +64,15 @@
 
     const fuse = new Fuse(items, options);
 
-    searchResults = query ? fuse.search(query).map((result) => result.item) : $sortedItems;
+    searchResults = query
+      ? fuse.search(query).map((result) => result.item)
+      : $sortedItems;
   }
+
+  onMount(() => {
+    fetchUserName();
+  });
+
 </script>
 
 <div class="notes-container">
