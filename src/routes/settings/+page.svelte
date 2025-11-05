@@ -7,6 +7,7 @@
     updateUsername,
     currentPassword,
     newPassword,
+    updatePassword
   } from "../../stores/account";
   import { onMount } from "svelte";
 
@@ -37,6 +38,12 @@
     }
   }
 
+  async function handleSubmit() {
+    updatePassword($currentPassword, $newPassword);
+    currentPassword.set("");
+    newPassword.set("");
+  }
+
 </script>
 
 <Pagetransitions>
@@ -55,7 +62,7 @@
     <div class="bottom-wrapper">
       <form
         class="change-user-data-form"
-        on:submit|preventDefault={updateUsername}
+        on:submit|preventDefault={handleSubmit}
       >
         <div class="username-wrapper">
           <h2>Change Username</h2>
