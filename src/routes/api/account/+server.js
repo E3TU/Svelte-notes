@@ -12,11 +12,28 @@ export async function GET(event) {
 
 export async function POST(event) {
   const { request } = event;
+
+  const data = await request.json();
   const { account } = createSessionClient(event);
 
-  const { username } = await request.json();
+  if (data.action === "updateusername") {
+    const { username } = await request.json();
 
-  const updateUsername = await account.updateName(username);
+    const updateUsername = await account.updateName(username);
 
-  return json(updateUsername);
+    return json(updateUsername);
+  }
+
+  if (data.action === "updatepassword") {
+    const requestData = data;
+    const { curpass, newpass } = requestData;
+
+
+    const updatePassword = await account.updatePassword(
+      newpass,
+      curpass
+    );
+
+    return json(updatePassword);
+  }
 }
