@@ -1,6 +1,8 @@
 import { writable } from "svelte/store";
 
 export let userName = writable("");
+export let currentPassword = writable("");
+export let newPassword = writable("");
 
 export async function fetchUserName() {
   const res = await fetch("/api/account");
@@ -20,5 +22,17 @@ export async function updateUsername() {
       }),
     });
     const data = await res.json();
+  });
+}
+
+export async function updatePassword(currentpassword, newpassword) {
+  const res = await fetch("/api/account", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      action: "updatepassword",
+      curpass: currentpassword,
+      newpass: newpassword,
+    }),
   });
 }
