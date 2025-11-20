@@ -43,7 +43,7 @@
               (selectedCategory = category), updateCategory(category.$id)
             )}
           >
-            {category.name}
+            {category.title}
           </li>
         {/each}
       {/if}
