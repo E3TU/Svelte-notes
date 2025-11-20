@@ -1,33 +1,27 @@
 import { json } from "@sveltejs/kit";
 
 import { createAdminClient } from "../../../lib/server/appwrite.js";
-import { Databases, ID } from "appwrite";
-// import { content, title } from "../../../stores/notesStore.js";
+import { Databases, ID, Query } from "appwrite";
 
 const databaseId = import.meta.env.VITE_DATABASE_ID;
-// const collectionId = import.meta.env.VITE_COLLECTION_I
+const noteCollectionId = import.meta.env.VITE_NOTES_COLLECTION_ID;
 
-let collectionId;
+// export async function GET({ locals }) {
+//   const { account } = createAdminClient(locals);
+//   const databases = new Databases(account.client);
 
-export async function GET({ locals }) {
-  const { account } = createAdminClient(locals);
-  const databases = new Databases(account.client);
+//   try {
+//     const fetchNotesResponse = await databases.listDocuments(
+//       databaseId,
+//       noteCollectionId
+//     );
 
-  //Logging collection id to make sure it gives the correct id
-  // console.log(collectionId);
-
-  try {
-    const fetchNotesResponse = await databases.listDocuments(
-      databaseId,
-      collectionId
-    );
-
-    return json({ documents: fetchNotesResponse.documents });
-  } catch (error) {
-    console.error(error);
-    return json({ error: "Failed to fetch notes" }, { status: 500 });
-  }
-}
+//     return json({ documents: fetchNotesResponse.documents });
+//   } catch (error) {
+//     console.error(error);
+//     return json({ error: "Failed to fetch notes" }, { status: 500 });
+//   }
+// }
 
 export async function POST({ request, locals }) {
   const { account } = createAdminClient(locals);
@@ -38,8 +32,6 @@ export async function POST({ request, locals }) {
 
   if (data.action === "firstcategoryid") {
     const firstcategoryId = data.firstId;
-
-    collectionId = firstcategoryId;
 
     return json({ firstcategoryId });
   }
@@ -54,17 +46,17 @@ export async function POST({ request, locals }) {
     try {
       const noteId = ID.unique();
 
-      // const { title, content } = await request.json();
-
       const requestData = data;
-      const { title, content } = requestData;
+      const { title, content, categoryId } = requestData;
+
+      console.log(categoryId);
 
       const saveNotesResponse = await databases.createDocument(
         databaseId,
-        collectionId,
+        noteCollectionId,
         noteId,
         // noteData,
-        { title, content, }
+        { title, content, categoryId }
       );
       return json(saveNotesResponse);
     } catch (error) {
@@ -72,25 +64,26 @@ export async function POST({ request, locals }) {
       return json({ error: "Failed to save note" }, { status: 500 });
     }
   }
+  if (data.action === "fetchnotes") {
 
-  // try {
-  //   // const noteData = get(newNote);
-  //   const noteId = ID.unique();
+    const requestData = data;
+    const { categoryId } = requestData;
 
-  //   const { title, content } = await request.json();
+    try {
+      const fetchNotesResponse = await databases.listDocuments(
+        databaseId,
+        noteCollectionId,
+        [
+          Query.equal('categoryId', categoryId),
+        ]
+      );
 
-  //   const saveNotesResponse = await databases.createDocument(
-  //     databaseId,
-  //     collectionId,
-  //     noteId,
-  //     // noteData,
-  //     { title, content, Created: Date.now() }
-  //   );
-  //   return json(saveNotesResponse);
-  // } catch (error) {
-  //   console.error(error);
-  //   return json({ error: "Failed to save note" }, { status: 500 });
-  // }
+      return json({ documents: fetchNotesResponse.documents });
+    } catch (error) {
+      console.error(error);
+      return json({ error: "Failed to fetch notes" }, { status: 500 });
+    }
+  }
 }
 
 export async function PATCH({ request, locals }) {
@@ -134,7 +127,7 @@ export async function DELETE({ request, locals }) {
       });
     }
 
-    const deleteNote = databases.deleteDocument(databaseId, collectionId, id);
+    const deleteNote = databases.deleteDocument(databaseId, noteCollectionId, id);
     await deleteNote;
     return new json({ success: "Note deleted successfully" }, { status: 200 });
   } catch (error) {

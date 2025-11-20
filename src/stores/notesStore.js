@@ -1,6 +1,7 @@
 //Store that contains notes and keeps the notes up to date on UI side
 
-import { writable } from "svelte/store";
+import { writable, get } from "svelte/store";
+import { categoryId } from "./categoriesStore";
 
 //Declare writable stores
 export let notes = writable([]);
@@ -10,14 +11,24 @@ export let content = writable("");
 export let documents = writable([]);
 
 export async function fetchNotes() {
-  const res = await fetch("api/notes");
+
+      const categoryIdValue = get(categoryId);
+
+  const res = await fetch("api/notes", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ action: "fetchnotes", categoryId: categoryIdValue }),
+  });
   const data = await res.json();
+  console.log(data.documents);
   documents.set(data.documents);
 }
 
 // Function to add notes
 export async function addNote(noteTitle, noteContent) {
 
+    const categoryIdValue = get(categoryId);
+  
   // Save the note to database
   try {
     const res = await fetch("/api/notes", {
@@ -27,13 +38,14 @@ export async function addNote(noteTitle, noteContent) {
         action: "newnote",
         title: noteTitle,
         content: noteContent,
+        categoryId: categoryIdValue,
       }),
     });
 
     await fetchNotes();
 
     if (!res.ok) {
-      console.error("Save to appwrite failed:", data);
+      console.error("Save to appwrite failed");
     }
   } catch (error) {
     console.error("Error saving note:", error);
