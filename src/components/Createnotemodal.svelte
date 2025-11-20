@@ -13,7 +13,6 @@
 
     title.set("");
     content.set("");
-    createNoteMenu();
   }
 </script>
 
