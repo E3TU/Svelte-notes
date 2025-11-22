@@ -13,6 +13,8 @@
 
     title.set("");
     content.set("");
+
+    closeModal();
   }
 </script>
 

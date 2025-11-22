@@ -14,9 +14,8 @@
       body: JSON.stringify({ categoryName }),
     });
 
-    const data = await res.json();
-
     fetchCategories();
+    closeModal();
   }
 </script>
 
