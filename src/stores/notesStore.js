@@ -11,8 +11,7 @@ export let content = writable("");
 export let documents = writable([]);
 
 export async function fetchNotes() {
-
-      const categoryIdValue = get(categoryId);
+  const categoryIdValue = get(categoryId);
 
   const res = await fetch("api/notes", {
     method: "POST",
@@ -26,9 +25,8 @@ export async function fetchNotes() {
 
 // Function to add notes
 export async function addNote(noteTitle, noteContent) {
+  const categoryIdValue = get(categoryId);
 
-    const categoryIdValue = get(categoryId);
-  
   // Save the note to database
   try {
     const res = await fetch("/api/notes", {
@@ -64,7 +62,7 @@ export async function editNote(noteTitle, noteContent, id) {
     console.log("Nothing to update");
     return;
   }
-  
+
   updatedFields.id = id;
 
   const res = await fetch("/api/notes", {
@@ -82,8 +80,6 @@ export async function editNote(noteTitle, noteContent, id) {
 
 // Function to delete notes
 export async function deleteNote(id) {
-  // notes.update((currentNotes) => currentNotes.filter((note) => note.id !== id));
-  console.log("Deleteing note id with:", id);
 
   const res = await fetch("/api/notes", {
     method: "DELETE",

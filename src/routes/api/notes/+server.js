@@ -6,50 +6,18 @@ import { Databases, ID, Query } from "appwrite";
 const databaseId = import.meta.env.VITE_DATABASE_ID;
 const noteCollectionId = import.meta.env.VITE_NOTES_COLLECTION_ID;
 
-// export async function GET({ locals }) {
-//   const { account } = createAdminClient(locals);
-//   const databases = new Databases(account.client);
-
-//   try {
-//     const fetchNotesResponse = await databases.listDocuments(
-//       databaseId,
-//       noteCollectionId
-//     );
-
-//     return json({ documents: fetchNotesResponse.documents });
-//   } catch (error) {
-//     console.error(error);
-//     return json({ error: "Failed to fetch notes" }, { status: 500 });
-//   }
-// }
-
 export async function POST({ request, locals }) {
   const { account } = createAdminClient(locals);
   const databases = new Databases(account.client);
 
   const data = await request.json();
   
-
-  if (data.action === "firstcategoryid") {
-    const firstcategoryId = data.firstId;
-
-    return json({ firstcategoryId });
-  }
-  if (data.action === "updatedcategoryid") {
-    const updatedcategoryId = data.updatedId;
-
-    collectionId = updatedcategoryId;
-
-    return json({ updatedcategoryId });
-  }
   if (data.action === "newnote") {
     try {
       const noteId = ID.unique();
 
       const requestData = data;
       const { title, content, categoryId } = requestData;
-
-      console.log(categoryId);
 
       const saveNotesResponse = await databases.createDocument(
         databaseId,
@@ -102,7 +70,7 @@ export async function PATCH({ request, locals }) {
   try {
     const editNote = await databases.updateDocument(
       databaseId,
-      collectionId,
+      noteCollectionId,
       updatedFields.id,
       dataToUpdate
     );

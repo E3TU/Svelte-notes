@@ -17,12 +17,8 @@ export async function GET({ locals }) {
 
     let categories = fetchCategoriesResponse.documents;
 
-    // console.log(categories[0].$id);
-
     return json({ documents: categories });
-    // let test = "kurwa";
 
-    // return json({ test });
   } catch (error) {
     console.error(error);
     return json({ error: "Failed to fetch categories" }, { status: 500 });
@@ -39,17 +35,12 @@ export async function POST(event) {
   try {
     const { categoryName } = await request.json();
 
-    // const categoryId = ID.unique();
-
     const user = await account.get();
     const userId = user.$id;
-
-    console.log(categoryName);
 
     const createCategory = await databases.createDocument(
       databaseId,
       categoriesCollectionId,
-      // categoryId,
       ID.unique(),
       { title: categoryName, userId: userId },
       [
